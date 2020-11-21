@@ -7,25 +7,41 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { FooterComponent } from './footer/footer.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { CadastroAlunoComponent } from './cadastroAluno/cadastroAluno.component';
+import { CadastroProfessorComponent } from './cadastroProfessor/cadastroProfessor.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
+import { LojaComponent } from './loja/loja.component';
 
 @NgModule({
-  declarations: [
+  declarations: [								
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent
-  ],
+      FooterComponent,
+      CadastroComponent,
+      CadastroAlunoComponent,
+      CadastroProfessorComponent,
+      LoginComponent,
+      DashboardComponent,
+      NavDashboardComponent,
+      LojaComponent
+   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'cadastro', component: CadastroComponent },
+      { path: 'aluno', component: CadastroAlunoComponent },
+      { path: 'professor', component: CadastroProfessorComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'loja', component: LojaComponent }
     ])
   ],
   providers: [],

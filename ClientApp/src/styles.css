@@ -1,16 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+
+@font-face {
+  font-family: "Archivo-bold";
+  src: url(assets/fonts/Archivo-Bold.ttf);
 }
 
-code {
-  color: #e01a76;
+@font-face {
+  font-family: "Archivo";
+  src: url(assets/fonts/Archivo-Regular.ttf);
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+html, body, #home {
+  height: 100%;
+  overflow-x: hidden;
 }

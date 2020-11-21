@@ -1,0 +1,90 @@
+<app-nav-dashboard></app-nav-dashboard>
+<div id="conteudo" class="grid">
+  <section id="barraVertical">
+    <div class="container-fluid">
+      <!-- Corpo -->
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a href="#" class="nav-link active">
+            <img class="img-fluid mr-3" src="../../assets/img/icons8-home-64.png" width="25"> Página Inicial
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="loja" class="nav-link" routerLinkActive="active">
+            <img class="img-fluid mr-3" src="../../assets/img/icons8-home-64.png" width="25"> Loja
+          </a>
+        </li>
+        <li>
+          <a href="#" class=" nav-link">
+            <img class="img-fluid mr-3" src="../../assets//img/icons8-add-to-favorites-100.png" width="25"> Meus
+            Cursos
+          </a>
+
+        </li>
+        <li>
+          <a routerLink="" class=" nav-link">
+            <img class="img-fluid mr-3" src="../../assets/img/icons8-plus-64.png" width="25">
+            Criar Cursos
+          </a>
+        </li>
+        <li>
+          <a href="#" class=" nav-link ">
+            <img class="img-fluid mr-4" src="../../assets/img/icons8-category-50.png" width="25">
+            Categorias
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div id="conteudoCurso" class="p-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-11 text-start">
+        <div class="form-group">
+          <div class="input-group-prepend">
+            <input type="text" class="form-control text-uppercase" name="" id="" placeholder="Procurar cursos por nome">
+            <button class="btn btn-success">BUSCAR</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row m-4">
+      <h3>Cursos Disponíveis</h3>
+    </div>
+    <div class="row">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Primeiro</th>
+            <th scope="col">Último</th>
+            <th scope="col">Nickname</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

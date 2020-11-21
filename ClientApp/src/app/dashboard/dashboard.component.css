@@ -1,0 +1,154 @@
+
+@font-face {
+    font-family: "Archivo-bold";
+    src: url(../../assets/fonts/Archivo-Bold.ttf);
+  }
+  
+  @font-face {
+    font-family: "Archivo";
+    src: url(../../assets/fonts/Archivo-Regular.ttf);
+  }
+  
+.container-formulario {
+    margin-top: 150px;
+    ;
+    background-color: #FFFFFF;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+form a {
+    text-decoration: none;
+}
+
+.botaoGrupo {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+/* barra de navegação */
+
+nav.navbar-transparente {
+    position: absolute;
+    width: 1440px;
+    height: 109px;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #333333;
+    font-family: "Archivo-bold";
+}
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #0275D8;
+    }
+
+.navbar-light .navbar-toggler {
+    color: rgba(0, 0, 0, .5);
+    border-color: white;
+}
+
+.divisor {
+    width: 1px;
+    background: white;
+    margin: 12px 15px;
+}
+
+.form-control {
+    border-radius: 50px;
+    border-color: black;
+}
+
+.grid {
+    display: grid;
+}
+
+#conteudo {
+    grid-template-columns: 20% 3% 77%;
+    grid-template-rows: 100% 100%;
+    grid-template-areas: "sidenav . conteudo1 conteudo1" "sidenav . conteudo2 conteudo2";
+}
+
+#barraVertical {
+    grid-area: sidenav;
+    background-color: #5cb85c;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#conteudoCurso {
+    grid-area: conteudo1;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 70%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#cursoDisponivel {
+    grid-area: conteudo2;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 70%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.card {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+ul {
+    list-style-type: none;
+    margin-top: 25px;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+    ul li {
+        background: #FFFFFF;
+        margin-top: 25px;
+        padding: 5px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+a {
+    text-decoration: none;
+    color: #333333
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+/*Capa*/
+
+/*// Extra small devices (portrait phones, less than 576px)*/
+
+@media (max-width: 575.98px) {
+}
+
+/*// Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+/*// Large devices (desktops, 992px and up)*/
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+
+@media (min-width: 1200px) {
+}

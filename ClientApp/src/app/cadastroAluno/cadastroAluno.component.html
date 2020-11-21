@@ -1,0 +1,73 @@
+<body>
+  <header>
+    <!-- Inicio Cabeçalho -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background:#FFFFFF;">
+        <a class="navbar-brand" routerLink=""><img src="../../assets/img/logo2.png" width="247"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+                aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse justify-content-end" id="conteudoNavbarSuportado">
+            <a class="nav-item nav-link" routerLink="" style="color: #333333;"> <img src="../../assets/img/25694.svg" width="50"></a>
+        </div>
+    </nav>
+
+
+
+
+</header> <!-- Fim Cabeçalho -->
+<div class="container espacoDiv">
+
+  <div class="container-formulario">
+      <form method="post">
+          <h4 class="text-primary">CRIE SUA CONTA</h4>
+          <h6>Preencha o cadastro</h6>
+          <hr>
+          <div class="form-group">
+              <label for="nomeCompleto">Nome Completo</label>
+              <input type="text" class="form-control" id="nomeCompleto" asp-for="Nome"
+                     placeholder="Digite seu nome" required>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1">Endereço de email</label>
+              <input type="email" class="form-control" asp-for="Email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                     placeholder="Seu email" required="true">
+          </div>
+          <div class="form-row">
+              <div class="col">
+                  <label for="exampleInputPassword1">Senha</label>
+                  <input type="password" asp-for="Senha" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+
+              </div>
+              <div class="col">
+                  <label for="dataNascimento">Data de Nascimento</label>
+                  <input type="date" asp-for="DataNascimento" class="form-control" id="dataNascimento" placeholder="12/08/1999">
+
+              </div>
+              <div class="col">
+                  <label for="telefone">Telefone</label>
+                  <input type="tel" asp-for="Telefone" class="form-control" id="telefone" placeholder="(XX) 00000-0000">
+
+              </div>
+          </div>
+          <div class="botaoGrupo">
+              <div class="">
+                  <a asp-controller="Cadastro" asp-action="Seletor">
+                      <button type="button" class="btn btn-danger">
+                          VOLTAR
+                      </button>
+                  </a>
+                  <button type="submit" class="btn btn-success">
+
+                      SALVAR
+                  </button>
+              </div>
+          </div>
+      </form>
+  </div>
+
+</div>
+
+</body>
