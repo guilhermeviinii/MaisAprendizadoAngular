@@ -42,8 +42,9 @@
       <div class="col-lg-11 text-start">
         <div class="form-group">
           <div class="input-group-prepend">
-            <input type="text" class="form-control text-uppercase" name="" id="" placeholder="Procurar cursos por nome">
-            <button class="btn btn-success">BUSCAR</button>
+            <input type="text"  [(ngModel)]="this.lojaService.curso" name="curso"  class="form-control text-uppercase"  placeholder="Procurar cursos por nome">
+            {{this.cursos}}
+            <button (click)="buscarCurso(this.lojaService.curso)" class="btn btn-success">BUSCAR</button>
           </div>
         </div>
 
@@ -53,37 +54,10 @@
     <div class="row m-4">
       <h3>Cursos Disponíveis</h3>
     </div>
-    <div class="row">
-      <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Primeiro</th>
-            <th scope="col">Último</th>
-            <th scope="col">Nickname</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row justify-content-between">
+      <app-curso ></app-curso>
+      <app-curso ></app-curso>
+      <app-curso ></app-curso>
     </div>
   </div>
 

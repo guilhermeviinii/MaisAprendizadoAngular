@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace AngularMVC.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    
     public class CursoController : Controller
     {
+        [Route("api/[controller]/Get")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -20,6 +21,25 @@ namespace AngularMVC.Controllers
                 using (var data = new CursoData())
                  
                         return Ok(data.Read());
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
+        [Route("api/[controller]/Read/{nome?}")]
+        [HttpGet]
+        public async Task<IActionResult> Read(string nome)
+        {
+           
+            try
+            {
+                using (var data = new CursoData())
+                 
+                        return Ok(data.Consulta());
 
 
 

@@ -9,6 +9,7 @@ namespace MaisAprendizado.Models
     public class Curso : Professor
     {
         public int? IdCurso { get; set; }
+
         public int IdPessoa { get; set; }
 
         [Display(Name = "Nome")]

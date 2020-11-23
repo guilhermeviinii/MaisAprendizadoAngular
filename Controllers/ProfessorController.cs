@@ -8,11 +8,11 @@ namespace AngularMVC.Controllers
 {
 
     [ApiController]
-    [Route("api/[controller]")]
 
     public class ProfessorController : Controller
     {
         
+        [Route("api/[controller]/Get")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {

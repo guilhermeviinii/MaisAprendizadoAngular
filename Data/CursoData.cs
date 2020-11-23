@@ -43,14 +43,14 @@ namespace MaisAprendizado.Data
             return lista;            
         }
         //Read - SELECT (por nome)
-        public Curso Read(string nome, int id)
+        public Curso Consulta()
         {
             Pessoa pessoa = null;
             Curso curso = null;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"SELECT c.*, p.Nome AS Professor FROM Cursos c LEFT JOIN Pessoa p
-                                    ON c.PessoaId = p.PessoaId WHERE Nome LIKE UPPER('@Nome%') AND c.PessoaId = @id";
+            cmd.CommandText = @"SELECT c.*, p.Nome AS Professor FROM Cursos c LEFT JOIN Pessoas p
+                                    ON c.ProfessorId = p.PessoaId";
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -59,7 +59,6 @@ namespace MaisAprendizado.Data
                 curso.IdCurso = (int)reader["CursoId"];
                 curso.Nome = (string)reader["Nome"];
                 curso.Preco = (decimal)reader["Preco"];
-                curso.CargaHoraria = (int)reader["CargaHoraria"];//Mudar para string atualizar banco para
                 pessoa.Nome = (string)reader["Professor"];
             }
             return curso;

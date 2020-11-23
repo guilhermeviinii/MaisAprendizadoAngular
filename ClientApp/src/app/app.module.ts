@@ -15,9 +15,10 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
 import { LojaComponent } from './loja/loja.component';
+import { CursoComponent } from './curso/curso.component';
 
 @NgModule({
-  declarations: [								
+  declarations: [										
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -28,7 +29,8 @@ import { LojaComponent } from './loja/loja.component';
       LoginComponent,
       DashboardComponent,
       NavDashboardComponent,
-      LojaComponent
+      LojaComponent,
+      CursoComponent,
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
