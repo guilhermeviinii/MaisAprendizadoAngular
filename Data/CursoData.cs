@@ -38,6 +38,7 @@ namespace MaisAprendizado.Data
                 curso.Nome = (string)reader["Nome"];
                 curso.Preco = (decimal)reader["Preco"];
                 curso.IdPessoa = (int)reader["ProfessorId"];
+                lista.Add(curso);
             }
             return lista;            
         }
