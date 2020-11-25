@@ -1,8 +1,8 @@
 import { Timestamp } from "rxjs";
 
-export class Curso {
+export interface Curso {
     id: number;
-    Nome: string;
-    Preco: number;
-    CargaHoraria: number;
+    nome: string;
+    preco: number;
+    cargaHoraria: number;
 }

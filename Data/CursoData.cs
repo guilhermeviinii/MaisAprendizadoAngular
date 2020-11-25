@@ -12,12 +12,12 @@ namespace MaisAprendizado.Data
     public class CursoData : Data
     {
         //Create - INSERT
-        public void Create (Curso curso) 
+        public void Create(Curso curso)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
             cmd.CommandText = @"EXEC AdicionarCurso @IdProfessor, @Nome, @Preco, @CargaHoraria";
-            cmd.Parameters.AddWithValue("@IdProfessor", curso.IdPessoa);
+            cmd.Parameters.AddWithValue("@IdProfessor", curso.PessoaId);
             cmd.Parameters.AddWithValue("@Nome", curso.Nome);
             cmd.Parameters.AddWithValue("@Preco", curso.Preco);
             cmd.Parameters.AddWithValue("@CargaHoraria", curso.CargaHoraria);
@@ -40,13 +40,13 @@ namespace MaisAprendizado.Data
                 curso.IdPessoa = (int)reader["ProfessorId"];
                 lista.Add(curso);
             }
-            return lista;            
+            return lista;
         }
         //Read - SELECT (por nome)
-        public Curso Consulta()
+        public List<Curso> Consulta()
         {
-            Pessoa pessoa = null;
-            Curso curso = null;
+            Pessoa pessoa = new Pessoa();
+            List<Curso> lista = new List<Curso>();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
             cmd.CommandText = @"SELECT c.*, p.Nome AS Professor FROM Cursos c LEFT JOIN Pessoas p
@@ -54,14 +54,34 @@ namespace MaisAprendizado.Data
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                pessoa = new Pessoa();
-                curso = new Curso();
+                Curso curso = new Curso();
                 curso.IdCurso = (int)reader["CursoId"];
                 curso.Nome = (string)reader["Nome"];
                 curso.Preco = (decimal)reader["Preco"];
                 pessoa.Nome = (string)reader["Professor"];
+                lista.Add(curso);
             }
-            return curso;
+            return lista;
+        }
+        public List<Curso> BuscarCursoPorNome(string nome)
+        {
+            nome = nome + "%";
+            Pessoa pessoa = new Pessoa();
+            List<Curso> lista = new List<Curso>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connectionDB;
+            cmd.CommandText = @"select * from Cursos where nome like upper(@nomeCurso)";
+            cmd.Parameters.AddWithValue("@nomeCurso", nome);
+             SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Curso curso = new Curso();
+                curso.IdCurso = (int)reader["CursoId"];
+                curso.Nome = (string)reader["Nome"];
+                curso.Preco = (decimal)reader["Preco"];
+                lista.Add(curso);
+            }
+            return lista;
         }
         //Update - UPDATE
         public void Update(Curso curso)

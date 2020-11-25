@@ -11,21 +11,17 @@ namespace MaisAprendizado.Data
     {
         //Create - INSERT
        
-        public void Create(Professor professor, Pessoa pessoa)
+        public void Create(Professor professor)
         {
-            try
-            {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connectionDB;
-                cmd.CommandText = @"INSERT INTO Professores Values(@ProfessorId, @Credito)";
-                cmd.Parameters.AddWithValue("@ProfessorId", pessoa.PessoaId);
-                cmd.Parameters.AddWithValue("@Credito", professor.Credito);
+                cmd.CommandText = @"EXEC AdicionarProfessor @Nome, @Email, @dataNascimento, @senha, @telefone";
+                cmd.Parameters.AddWithValue("@Nome", professor.Nome);
+                cmd.Parameters.AddWithValue("@Email", professor.Email);
+                cmd.Parameters.AddWithValue("@dataNascimento", professor.DataNascimento);
+                cmd.Parameters.AddWithValue("@senha", professor.Senha);
+                cmd.Parameters.AddWithValue("@telefone", professor.Telefone);
                 cmd.ExecuteNonQuery();
-            }
-            catch (Exception error)
-            {
-                return ;
-            }
         }
         //Read - SELECT
         public List<Professor> Read()

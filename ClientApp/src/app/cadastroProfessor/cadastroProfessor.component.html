@@ -22,41 +22,41 @@
   <div class="container espacoDiv">
 
     <div class="container-formulario">
-      <form method="post">
+      <form [formGroup]="professor" (ngSubmit)="registroProfessor()">
         <h4 class="text-primary">CRIE SUA CONTA</h4>
         <h6>Preencha o cadastro</h6>
         <hr>
         <div class="form-group">
-          <label for="nomeCompleto">Nome Completo</label>
-          <input type="text" class="form-control" id="nomeCompleto" asp-for="Nome" placeholder="Digite seu nome"
+          <label for="nome">Nome Completo</label>
+          <input type="text" formControlName="nome" class="form-control" id="nome" asp-for="Nome" placeholder="Digite seu nome"
             required>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Endereço de email</label>
-          <input type="email" class="form-control" asp-for="Email" id="exampleInputEmail1" aria-describedby="emailHelp"
+          <input type="email" formControlName="email" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp"
             placeholder="Seu email" required="true">
         </div>
         <div class="form-row">
           <div class="col">
             <label for="exampleInputPassword1">Senha</label>
-            <input type="password" asp-for="Senha" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+            <input type="password" formControlName="senha" class="form-control" id="exampleInputPassword1" placeholder="Senha">
 
           </div>
           <div class="col">
             <label for="dataNascimento">Data de Nascimento</label>
-            <input type="date" asp-for="DataNascimento" class="form-control" id="dataNascimento"
+            <input type="date" formControlName="dataNascimento" class="form-control" id="dataNascimento"
               placeholder="12/08/1999">
 
           </div>
           <div class="col">
             <label for="telefone">Telefone</label>
-            <input type="tel" asp-for="Telefone" class="form-control" id="telefone" placeholder="(XX) 00000-0000">
+            <input type="tel" formControlName="telefone"  class="form-control" id="telefone" placeholder="(XX) 00000-0000">
 
           </div>
         </div>
         <div class="botaoGrupo">
           <div class="">
-            <a asp-controller="Cadastro" asp-action="Seletor">
+            <a routerLink="/cadastro">
               <button type="button" class="btn btn-danger">
                 VOLTAR
               </button>

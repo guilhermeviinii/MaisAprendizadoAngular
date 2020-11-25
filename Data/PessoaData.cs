@@ -94,6 +94,25 @@ namespace MaisAprendizado.Data
             }
             return pessoa;
         }
+        public Pessoa Get(string email, string senha)
+        {
+            Pessoa pessoa = null;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connectionDB;
+            cmd.CommandText = @"SELECT * FROM Pessoas WHERE email = @Email and senha = @senha";
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@senha", senha);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                pessoa = new Pessoa();
+                pessoa.PessoaId = (int)reader["IdPessoa"];
+                pessoa.Nome = (string)reader["Nome"];
+                pessoa.Email = (string)reader["Email"];
+                pessoa.Senha = (string)reader["Senha"];
+            }
+            return pessoa;
+        }
         //Update - UPDATE
         public void Update(Pessoa pessoa)
         {

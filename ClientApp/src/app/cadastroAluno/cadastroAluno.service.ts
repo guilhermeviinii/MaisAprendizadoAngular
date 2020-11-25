@@ -6,15 +6,13 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CadastroProfessorService {
-  baseUrl = `${environment.UrlPrincipal}/api/professor`;
+export class CadastroAlunoService {
+  baseUrl = `${environment.UrlPrincipal}/api/aluno`;
 
   constructor(private http: HttpClient) { }
 
-  registroProfessor(professor: any): Observable<any> {
-    return this.http.post(this.baseUrl + '/registroProfessor', professor);
+  registroAluno(aluno: any): Observable<any> {
+    return this.http.post(this.baseUrl + '/registroAluno', aluno);
 
   }
-
 }
-

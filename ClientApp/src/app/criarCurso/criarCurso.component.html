@@ -1,0 +1,87 @@
+<app-nav-dashboard></app-nav-dashboard>
+<div id="conteudo" class="grid">
+  <section id="barraVertical">
+      <div class="container-fluid">
+          <!-- Corpo -->
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a routerLink="/dashboard" class="nav-link active">
+                <img class="img-fluid mr-3" src="../../assets/img/icons8-home-64.png" width="25"> Página Inicial
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/loja" class="nav-link" routerLinkActive="active">
+                <span class="material-icons mr-3">
+                  shopping_cart
+                </span> Loja
+              </a>
+            </li>
+            <li>
+              <a routerLink="/meusCursos" class=" nav-link">
+                <img class="img-fluid mr-3" src="../../assets//img/icons8-add-to-favorites-100.png" width="25"> Meus
+                Cursos
+              </a>
+    
+            </li>
+            <li>
+              <a routerLink="/criarCurso" class=" nav-link">
+                <img class="img-fluid mr-3" src="../../assets/img/icons8-plus-64.png" width="25">
+                Criar Cursos
+              </a>
+            </li>
+            <li>
+              <a routerLink="/categoria" class=" nav-link ">
+                <img class="img-fluid mr-4" src="../../assets/img/icons8-category-50.png" width="25">
+                Categorias
+              </a>
+            </li>
+          </ul>
+      </div>
+  </section>
+
+  <section id="conteudoCurso">
+      <div class="container formulario">
+          <!-- Corpo -->
+          <div class="row d-flex justify-content-center p-3">
+              <h4 class="text-success pt-5">Criar Curso</h4>
+          </div>
+          <form [formGroup]="formulario" (ngSubmit)="criarCurso()">
+              <div class="row d-flex justify-content-center">
+                  <span>&NomeProfessor, por favor coloque as informações do curso</span>
+              </div>
+              <div class="row d-flex justify-content-center mt-3">
+                  <div class="form-group text-center">
+                      <label for="nomeCurso">Nome do Curso</label>
+                      <input type="email" formControlName="nome" class="form-control" id="nomeCurso" aria-describedby="nomeCurso"
+                          placeholder="Digite o nome do curso">
+                  </div>
+              </div>
+              <div class="row d-flex justify-content-around p-3" >
+                  <div class="form-group">
+                      <label for="precoCurso">Preço</label>
+                      <input type="number" formControlName="preco" class="form-control" id="precoCurso" aria-describedby="precoCurso"
+                          placeholder="Valor do Curso">
+                  </div>
+                  <div class="form-group">
+                      <label for="cargaHoraria">Carga Horária</label>
+                      <input type="number" formControlName="cargaHoraria"  class="form-control" id="cargaHoraria" aria-describedby="cargaHoraria"
+                          placeholder="Duração do Curso">
+                  </div>
+                  <div class="form-group mt-3 ">
+                      <label for="customFile"  class="text-center">Thumbnail do Curso</label>
+                      <div class="custom-file">
+                          <label class="custom-file-label" for="customFile">Selecione uma imagem</label>
+                          <input type="file" formControlName="customFile" class="custom-file-input" id="customFile">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row d-flex justify-content-center">
+                  <a href="#" class="p-2"><button class="btn btn-danger">Cancelar</button><img src="../../assets/img/icons8-cancel-64.png" width="45"></a>
+                  <a href="#" class="p-2"><button type="submit" class="btn btn-primary">Salvar</button><img src="../../assets/img/icons8-save-64.png" width="45"></a>
+              </div>
+          </form>
+
+      </div>
+  </section>
+</div>

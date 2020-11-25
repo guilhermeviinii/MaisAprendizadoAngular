@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { tap, map } from 'rxjs/operators'
 import { Component, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,16 +11,26 @@ import { Curso } from '../models/Curso';
 })
 export class LojaService {
   baseUrl = `${environment.UrlPrincipal}/api/curso`;
-  public Cursos = [];
-
-  public curso: string;
-
-
   constructor(private http: HttpClient) { }
 
   buscarTodosCursos(): Observable<Curso[]> {
-    return this.http.get<Curso[]>(`${this.baseUrl}/Read`)
+    return this.http.get<Curso[]>(`${this.baseUrl}/Read`).pipe(
+      tap(console.log))
   }
+
+  
+  buscarCursoPorNome(nomeCurso: string): Observable<Curso[]>{
+    let params = new HttpParams();
+    params = params.set('nome', nomeCurso);
+    return this.http.get<Curso[]>(`${this.baseUrl}/BuscarCursoPorNome?${params}`).pipe(
+      tap(console.log))
+  }
+
+  criarCurso(formulario: any): Observable<any> {
+    return this.http.post(this.baseUrl + '/criarCurso', formulario);
+
+  }
+  
   
 
 }

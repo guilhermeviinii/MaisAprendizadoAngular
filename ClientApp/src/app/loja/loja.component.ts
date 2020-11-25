@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Curso } from '../models/Curso';
+import { tap, map } from 'rxjs/operators'
 import { LojaService } from './loja.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-loja',
@@ -9,27 +11,29 @@ import { LojaService } from './loja.service';
 })
 export class LojaComponent implements OnInit {
 
-  public cursos: Curso[];
+  @Input() nomeCurso: string;
 
-  constructor(public lojaService: LojaService) { }
+  cursos: Curso[];
+
+  existeCurso: boolean;
+
+  constructor(private lojaService: LojaService) { }
 
   ngOnInit() {
-    this.lojaService.curso;
     this.carregarCursos();
+    this.lojaService.buscarTodosCursos().subscribe(
+      arrayCursos => this.cursos = arrayCursos
+    )
   }
 
-  carregarCursos(){
-     this.lojaService.buscarTodosCursos().subscribe(
-       (curso: Curso[]) => {
-        this.cursos = curso
-        console.log(this.cursos)
-       },
-       (erro: any) => {console.error(erro)}
-     );
+  carregarCursos() {
+
   }
 
-  buscarCurso(): void{
-    window.alert(this.lojaService.curso)
+  buscarCurso() {
+    this.lojaService.buscarCursoPorNome(this.nomeCurso).subscribe(
+      arrayCursos => this.cursos = arrayCursos
+    )
   }
 
 }

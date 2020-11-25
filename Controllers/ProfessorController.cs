@@ -30,6 +30,25 @@ namespace AngularMVC.Controllers
                  return BadRequest($"Erro: {ex.Message}");
             }
         }
+        [Route("api/[controller]/registroProfessor")]
+        [HttpPost]
+        public async Task<IActionResult> RegistroProfessor([FromBody] Professor professor)
+        {
+            
+            try
+            {
+                using (var data = new ProfessorData())  
+                data.Create(professor);                   
+                return Ok();
+
+
+
+            }
+            catch(Exception ex)
+            {
+                 return BadRequest($"Erro: {ex.Message}");
+            }
+        }
 
     }
 }

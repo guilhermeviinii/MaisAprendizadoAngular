@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupName, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -16,9 +16,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavDashboardComponent } from './nav-dashboard/nav-dashboard.component';
 import { LojaComponent } from './loja/loja.component';
 import { CursoComponent } from './curso/curso.component';
+import { CriarCursoComponent } from './criarCurso/criarCurso.component';
+import { AuthService } from './login/auth.service';
 
 @NgModule({
-  declarations: [										
+  declarations: [											
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -31,10 +33,12 @@ import { CursoComponent } from './curso/curso.component';
       NavDashboardComponent,
       LojaComponent,
       CursoComponent,
+      CriarCursoComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -43,10 +47,11 @@ import { CursoComponent } from './curso/curso.component';
       { path: 'professor', component: CadastroProfessorComponent },
       { path: 'login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'loja', component: LojaComponent }
+      { path: 'loja', component: LojaComponent },
+      { path: 'criarCurso', component: CriarCursoComponent }
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

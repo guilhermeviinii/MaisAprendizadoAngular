@@ -13,17 +13,17 @@ namespace MaisAprendizado.Data
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"EXEC AdicionarAluno @Nome, @Email, @DataNascimetno, @Senha, @Telefone";
+            cmd.CommandText = @"EXEC AdicionarAluno @Nome, @Email, @dataNascimento, @senha, @telefone";
             cmd.Parameters.AddWithValue("@Nome", aluno.Nome);
             cmd.Parameters.AddWithValue("@Email", aluno.Email);
-            cmd.Parameters.AddWithValue("@DataNascimento", aluno.DataNascimento);
-            cmd.Parameters.AddWithValue("@Senha", aluno.Senha);
-            cmd.Parameters.AddWithValue("@Nome", aluno.Telefone);
+            cmd.Parameters.AddWithValue("@dataNascimento", aluno.DataNascimento);
+            cmd.Parameters.AddWithValue("@senha", aluno.Senha);
+            cmd.Parameters.AddWithValue("@telefone", aluno.Telefone);
             cmd.ExecuteNonQuery();
         }
         //Read - SELECT
         public List<Aluno> Read()
-            
+
         {
             List<Aluno> lista = null;
             lista = new List<Aluno>();
@@ -31,7 +31,7 @@ namespace MaisAprendizado.Data
             cmd.Connection = connectionDB;
             cmd.CommandText = @"SELECT * FROM Alunos ORDER BY Nome";
             SqlDataReader reader = cmd.ExecuteReader();
-            while(reader.Read())
+            while (reader.Read())
             {
                 Aluno aluno = new Aluno();
                 aluno.Nome = (string)reader["Nome"];
@@ -50,7 +50,7 @@ namespace MaisAprendizado.Data
             cmd.CommandText = @"SELECT * FROM Alunos WHERE @id = AlunoId";
             cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read());
+            if (reader.Read()) ;
             {
                 aluno = new Aluno();
                 aluno.PessoaId = (int)reader["AlunoId"];
