@@ -106,10 +106,12 @@ namespace MaisAprendizado.Data
             if (reader.Read())
             {
                 pessoa = new Pessoa();
-                pessoa.PessoaId = (int)reader["IdPessoa"];
+                pessoa.PessoaId = (int)reader["PessoaId"];
                 pessoa.Nome = (string)reader["Nome"];
                 pessoa.Email = (string)reader["Email"];
                 pessoa.Senha = (string)reader["Senha"];
+                pessoa.DataNascimento = (DateTime)reader["dataNascimento"];
+                pessoa.Telefone = (string)reader["Telefone"];
             }
             return pessoa;
         }

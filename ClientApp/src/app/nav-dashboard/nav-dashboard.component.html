@@ -1,37 +1,34 @@
 <header>
-  <!-- Inicio Cabeçalho -->
-  <nav class="navbar navbar-expand-lg navbar-light mb-3" style="background:#FFFFFF;">
-      <a class="navbar-brand" routerLink="dashboard"><img src="../../assets/img/logo2.png" width="247"></a>
+    <!-- Inicio Cabeçalho -->
+    <nav class="navbar navbar-expand-lg navbar-light mb-3" style="background:#FFFFFF;">
+        <a class="navbar-brand" routerLink="dashboard"><img src="../../assets/img/logo2.png" width="247"></a>
 
 
-      <div class="collapse navbar-collapse justify-content-sm-around" id="conteudoNavbarSuportado">
+        <div class="collapse navbar-collapse justify-content-sm-around" id="conteudoNavbarSuportado">
 
 
-      </div>
-      <div class="dropdown">
-        <a class="btn btn-light dropdown-toggle"  role="button" id="dropdownMenuLink"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-           style="color: #333333; ">
-            <img src="../../assets/img/d3cbc4eedb50fc75a8d0398a0defe70c.png"
-                 width="40">
-        </a>
-
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" routerLink="perfil">Perfil</a>
-            <a class="dropdown-item text-danger" routerLink="">Sair</a>
         </div>
-    </div>
-      <div class="dropdown">
-          <a class="btn btn-light dropdown-toggle"  role="button" id="dropdownMenuLink"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-             style="color: #333333; ">
-              <img src="../../assets/img/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
-                   width="40">
-          </a>
+        <div class="dropdown">
+            <a class="btn btn-light dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" style="color: #333333; ">
+                <img src="../../assets/img/d3cbc4eedb50fc75a8d0398a0defe70c.png" width="40">
+            </a>
 
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" routerLink="perfil">Perfil</a>
-              <a class="dropdown-item text-danger" routerLink="">Sair</a>
-          </div>
-      </div>
-  </nav>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" routerLink="perfil">Perfil</a>
+                <a class="dropdown-item text-danger" routerLink="">Sair</a>
+            </div>
+        </div>
+        <div class="btn-group" dropdown>
+            <a id="button-animated" dropdownToggle type="button" class="dropdown-toggle"
+                aria-controls="dropdown-animated"><img src="../../assets/img/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
+                    width="40">
+            </a>
+            <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
+                aria-labelledby="button-animated">
+                <li role="menuitem"><a class="dropdown-item" routerLink="/perfil">Perfil</a>
+                </li>
+                <li role="menuitem"><a class="dropdown-item text-danger" routerLink="">Sair</a></li>
+            </ul>
+        </div>
+    </nav>

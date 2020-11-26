@@ -2,6 +2,8 @@ using System;
 using System.Threading.Tasks;
 using MaisAprendizado.Data;
 using MaisAprendizado.Models;
+using MaisAprendizadoAngular.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularMVC.Controllers
@@ -9,20 +11,28 @@ namespace AngularMVC.Controllers
 
 
     [ApiController]
-    [Route("api/[controller]")]
 
     public class PessoasController : Controller
     {
         [Route("api/[controller]/Get")]
-         [HttpGet]
-        public IActionResult Get(string email, string senha)
+         [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult<dynamic>> Get([FromBody] Pessoa pessoa)
         {
             Pessoa usuario = new Pessoa();
             try
             {
                 using(var data = new PessoaData())
-                usuario = data.Get(email, senha);
-                return Ok("");
+                usuario = data.Get(pessoa.Email, pessoa.Senha);
+                if(usuario == null){
+                return  new {mensagem = "usuarioErrado"};
+                }
+                var token = TokenService.GenerateToken(usuario);
+                usuario.Senha = "";
+                return new {
+                    usuario = usuario,
+                    token = token
+                };
             }
             catch (Exception ex)
             {

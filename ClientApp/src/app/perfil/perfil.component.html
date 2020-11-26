@@ -1,0 +1,95 @@
+<div class="fundao"></div>
+<div class="container-fluid">
+  <div id="conteudo" class="grid">
+      <section id="caixaPerfil">
+          <ul>
+              <li>
+                  <img src="../Perfil/img/images.png" width="130" height="130">
+              </li>
+              <li>
+                  <a routerLink="/perfil" class="nav-link active aperfil">Perfil</a>
+              </li>
+              <li>
+                  <a routerLink="/dashboard" class=" nav-link avoltar">Voltar</a>
+              </li>
+          </ul>
+      </section>
+      <section id="caixaInfo">
+          <div class="container">
+              <h4 class="text-center p-3">Bem vindo ao seu perfil, {{this.pessoa.nome}}</h4>
+              <form>
+                  <fieldset class="pb-3">Suas informações pessoais: </fieldset>
+                  <div class="row ml-5 d-flex justify-content-center">
+                      <div class="col-lg-3">
+
+                          <div class="form-group">
+                              <label for="dataNascimento">Data de Nascimento: </label>
+                              <input type="date" name=""   id="dataNascimento" class="form-control" placeholder=""
+                                  aria-describedby="helpId">
+                          </div>
+                      </div>
+                      <div class="col-lg-3">
+                          <div class="form-group">
+                              <label for="telefone">Telefone: </label>
+                              <input type="number" name=""  id="telefone" class="form-control" placeholder=""
+                                  aria-describedby="helpId">
+                          </div>
+                      </div>
+                      <div class="col-lg-3">
+                          <div class="form-group">
+                              <label for="email">Email: </label>
+                              <input type="email" name=""  [email] id="email" class="form-control" placeholder=""
+                                  aria-describedby="helpId">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mt-3 d-flex justify-content-center">
+                      <div class="col-lg-3">
+                          <button type="submit" class="btn btn-block btn-success">Editar</button>
+                      </div>
+                  </div>
+
+              </form>
+          </div>
+      </section>
+      <section id="cursos">
+          <div class="container-fluid">
+              <div class="row alert-info d-flex justify-content-center">
+                  <h3 class="text-dark p-2">Cursos Adquiridos</h3>
+              </div>
+              <div class="row d-flex justify-content-around p-5">
+                  <div class="card" style="width: 8rem; font-size: 13px;">
+                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
+                      <div class="card-body">
+                          <p class="card-text text-center">@Título</p>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 8rem; font-size: 13px;">
+                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
+                      <div class="card-body">
+                          <p class="card-text text-center">@Título</p>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 8rem; font-size: 13px;">
+                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
+                      <div class="card-body">
+                          <p class="card-text text-center">@Título</p>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 8rem; font-size: 13px;">
+                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
+                      <div class="card-body">
+                          <p class="card-text text-center">@Título</p>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 8rem; font-size: 13px;">
+                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
+                      <div class="card-body">
+                          <p class="card-text text-center">@Título</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </div>
+</div>
