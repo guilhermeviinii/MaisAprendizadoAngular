@@ -12,13 +12,29 @@ export class NavDashboardComponent implements OnInit {
 
   constructor(
     private lojaService: LojaService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.lojaService.total;
     console.log(this.itemCarrinho = this.lojaService.itemCarrinho)
-    
+
   }
 
-  
+  removerItem(index) {
+    // for (let i of this.lojaService.itemCarrinho) {
+    //   if(i == this.lojaService.itemCarrinho[index]){
+    //     this.lojaService.total = this.lojaService.total - this.lojaService.itemCarrinho[index]['preco']
+    //     this.lojaService.itemCarrinho.splice(index, 1);
+    //   }
+    for (var i in this.lojaService.itemCarrinho) {
+      if (i == index) {
+        this.lojaService.total = this.lojaService.total - this.lojaService.itemCarrinho[index]['preco']
+        this.lojaService.itemCarrinho.splice(index, 1);
+      }
+      console.log(this.lojaService.itemCarrinho)
+
+    }
+  }
+
+
 }

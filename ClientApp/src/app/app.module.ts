@@ -25,9 +25,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 import { CursoPerfilComponent } from './cursoPerfil/cursoPerfil.component';
 import { ItemCarrinhoComponent } from './itemCarrinho/itemCarrinho.component';
+import { FinalizaCompraComponent } from './finalizaCompra/finalizaCompra.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -43,7 +44,8 @@ import { ItemCarrinhoComponent } from './itemCarrinho/itemCarrinho.component';
     CriarCursoComponent,
     PerfilComponent,
     CursoPerfilComponent,
-  ],
+      FinalizaCompraComponent
+   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -79,13 +81,18 @@ import { ItemCarrinhoComponent } from './itemCarrinho/itemCarrinho.component';
       },
       {
         path: 'loja',
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: LojaComponent
       },
       {
         path: 'criarCurso',
         canActivate: [AuthGuard],
         component: CriarCursoComponent
+      },
+      {
+        path: 'finalizaCompra',
+        // canActivate: [AuthGuard],
+        component: FinalizaCompraComponent
       },
       {
         path: 'perfil',

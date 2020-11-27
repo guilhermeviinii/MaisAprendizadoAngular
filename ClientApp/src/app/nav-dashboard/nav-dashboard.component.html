@@ -8,61 +8,64 @@
 
 
         </div>
-        <div class="dropdown" dropdown>
-            <ul class="dropdown-menu" *dropdownMenu aria-labelledby="dropdownMenuLink">
-                <li class="dropdown-item" style="max-width: 180px; white-space: normal">
-                    <div *ngFor="let item of itemCarrinho">
-                        <div style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                            <div class="row justify-content-center p-1  ">
-                                <div class="col-lg-10 " style="font-size: 20px;">
-                                    <span class=" badge badge-light">{{item.nome}}</span><br>
-
+            <div class="dropdown" dropdown>
+                <ul class="dropdown-menu" *dropdownMenu aria-labelledby="dropdownMenuLink">
+                    <li class="dropdown-item" style="max-width: 180px; white-space: normal">
+                        <div *ngFor="let item of itemCarrinho; let i = index">
+                            <div style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                <div class="col-lg-12  mb-2 text-right" (click)="removerItem(i)"
+                                    style="height: 20px; cursor: pointer;">
+                                    <span class="badge badge-danger" style="">X</span>
                                 </div>
-                                <div class="col-lg-12 text-center align-items-center mt-2">
-                                    <span>{{item.preco}}</span>
-                                    <p class="material-icons ml-2">
-                                        monetization_on
-                                    </p>
+                                <div class="row justify-content-center p-1  ">
+                                    <div class="col-lg-10 " style="font-size: 20px;">
+                                        <span class=" badge badge-light">{{item.nome}}</span><br>
+
+                                    </div>
+                                    <div class="col-lg-12 text-center align-items-center mt-2">
+                                        <span>{{item.preco}}</span>
+                                        <p class="material-icons ml-2">
+                                            monetization_on
+                                        </p>
+                                    </div>
+
                                 </div>
 
                             </div>
 
-                        </div>
 
-                        
-                        <div class="col-lg-12 btn btn-danger justify-content-center" style="border: 1px solid red; height: 15px;">
-                            <span>X</span>
+
+                            <hr>
                         </div>
-                        <hr>
+                    </li>
+                    <div class="dropdown-item text-center" *ngIf="this.lojaService.itemCarrinho">
+                        <span class="badge badge-primary">Valor total: R${{this.lojaService.total}}</span>
                     </div>
-                </li>
-                <li class="dropdown-item justify-content-center">
-                    Valor total: R${{this.lojaService.total}}
-                </li>
 
 
-                <li class="dropdown-item text-danger mt-1">
-                    <hr><button class="btn btn-sm btn-success">Finalizar Compra</button>
-                </li>
-            </ul>
-            <a class="btn btn-light dropdown-toggle" dropdownToggle role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #333333; ">
-                <img src="../../assets/img/d3cbc4eedb50fc75a8d0398a0defe70c.png" width="40">
-            </a>
+                    <div class="dropdown-item text-danger mt-1">
+                        <hr><button routerLink="/finalizaCompra" class="btn btn-sm btn-success">Finalizar Compra</button>
+                    </div>
+                </ul>
+                <a class="btn btn-light dropdown-toggle" dropdownToggle role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #333333; ">
+                    <img src="../../assets/img/d3cbc4eedb50fc75a8d0398a0defe70c.png" width="40"><span
+                    class="badge badge-warning">{{this.lojaService.itemCarrinho.length}}</span>
+                </a>
 
 
-        </div>
-        <div class="btn-group mr-5" dropdown>
-            <a id="button-animated" dropdownToggle type="button" class="dropdown-toggle"
-                aria-controls="dropdown-animated"><img
-                    src="../../assets/img/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
-                    width="40">
-            </a>
-            <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
-                aria-labelledby="button-animated">
-                <li role="menuitem"><a class="dropdown-item" routerLink="/perfil">Perfil</a>
-                </li>
-                <li role="menuitem"><a class="dropdown-item text-danger" routerLink="">Sair</a></li>
-            </ul>
-        </div>
+            </div>
+            <div class="btn-group mr-5" dropdown>
+                <a id="button-animated" dropdownToggle type="button" class="dropdown-toggle"
+                    aria-controls="dropdown-animated"><img
+                        src="../../assets/img/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
+                        width="40">
+                </a>
+                <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
+                    aria-labelledby="button-animated">
+                    <li role="menuitem"><a class="dropdown-item" routerLink="/perfil">Perfil</a>
+                    </li>
+                    <li role="menuitem"><a class="dropdown-item text-danger" routerLink="">Sair</a></li>
+                </ul>
+            </div>
     </nav>

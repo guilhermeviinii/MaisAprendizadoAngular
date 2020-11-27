@@ -1,0 +1,12 @@
+.navbar-light .navbar-nav .nav-link {
+    font-family: "Archivo-bold";
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    text-decoration: none;
+}
+
+.navbar-light .navbar-toggler {
+    color: rgba(0, 0, 0, .5);
+    border-color: white;
+}
