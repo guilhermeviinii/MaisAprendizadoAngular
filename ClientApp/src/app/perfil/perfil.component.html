@@ -1,95 +1,124 @@
-<div class="fundao"></div>
-<div class="container-fluid">
-  <div id="conteudo" class="grid">
-      <section id="caixaPerfil">
-          <ul>
-              <li>
-                  <img src="../Perfil/img/images.png" width="130" height="130">
-              </li>
-              <li>
-                  <a routerLink="/perfil" class="nav-link active aperfil">Perfil</a>
-              </li>
-              <li>
-                  <a routerLink="/dashboard" class=" nav-link avoltar">Voltar</a>
-              </li>
-          </ul>
-      </section>
-      <section id="caixaInfo">
-          <div class="container">
-              <h4 class="text-center p-3">Bem vindo ao seu perfil, {{this.pessoa.nome}}</h4>
-              <form>
-                  <fieldset class="pb-3">Suas informações pessoais: </fieldset>
-                  <div class="row ml-5 d-flex justify-content-center">
-                      <div class="col-lg-3">
+<div class="backgroundFundo">
 
-                          <div class="form-group">
-                              <label for="dataNascimento">Data de Nascimento: </label>
-                              <input type="date" name=""   id="dataNascimento" class="form-control" placeholder=""
-                                  aria-describedby="helpId">
-                          </div>
-                      </div>
-                      <div class="col-lg-3">
-                          <div class="form-group">
-                              <label for="telefone">Telefone: </label>
-                              <input type="number" name=""  id="telefone" class="form-control" placeholder=""
-                                  aria-describedby="helpId">
-                          </div>
-                      </div>
-                      <div class="col-lg-3">
-                          <div class="form-group">
-                              <label for="email">Email: </label>
-                              <input type="email" name=""  [email] id="email" class="form-control" placeholder=""
-                                  aria-describedby="helpId">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row mt-3 d-flex justify-content-center">
-                      <div class="col-lg-3">
-                          <button type="submit" class="btn btn-block btn-success">Editar</button>
-                      </div>
-                  </div>
+    <div class="col-lg-12 fundo">
+        <div class="row">
+            <div class="col-lg-8 contPessoa">
+                <h4>Dados Pessoais</h4>
+                <hr>
+                <div class="row justify-content-end">
+                    <button class="btn btn-warning mt-3 mr-5" *ngIf="this.mostrarEditar == false"
+                        (click)="this.mostrarEditar = !this.mostrarEditar">Editar</button>
+                </div>
+                <div class="col-lg-12 m-2 ">
+                    <div *ngIf="!mostrarEditar">
+                        <div class="row m-2 ">
+                            <div class="col-lg-6">
+                                <span class="badge badge-dark textoDados">Nome: </span><span>
+                                    &nbsp;{{this.pessoa.nome}}</span>
+                            </div>
+                            <div class="col-lg-6  ">
+                                <span class="badge badge-dark textoDados">Email: </span><span>
+                                    &nbsp;{{this.pessoa.email}}</span>
+                            </div>
 
-              </form>
-          </div>
-      </section>
-      <section id="cursos">
-          <div class="container-fluid">
-              <div class="row alert-info d-flex justify-content-center">
-                  <h3 class="text-dark p-2">Cursos Adquiridos</h3>
-              </div>
-              <div class="row d-flex justify-content-around p-5">
-                  <div class="card" style="width: 8rem; font-size: 13px;">
-                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
-                      <div class="card-body">
-                          <p class="card-text text-center">@Título</p>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 8rem; font-size: 13px;">
-                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
-                      <div class="card-body">
-                          <p class="card-text text-center">@Título</p>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 8rem; font-size: 13px;">
-                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
-                      <div class="card-body">
-                          <p class="card-text text-center">@Título</p>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 8rem; font-size: 13px;">
-                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
-                      <div class="card-body">
-                          <p class="card-text text-center">@Título</p>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 8rem; font-size: 13px;">
-                      <img class="card-img-top" src="../Perfil/img/download (2).png" alt="Imagem de capa do card">
-                      <div class="card-body">
-                          <p class="card-text text-center">@Título</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-  </div>
+                        </div>
+                        <div class="row align-self-end m-2">
+                            <div class="col-lg-6 mt-3 justify-contend-around">
+                                <span class="badge badge-dark textoDados">Data de Nascimento: </span>
+                                <span> &nbsp;{{this.pessoa.dataNascimento}}</span>
+                            </div>
+                            <div class="col-lg-6 mt-3">
+                                <span class="badge badge-dark textoDados">Telefone: </span>
+                                <span> &nbsp;{{this.pessoa.telefone}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-2" *ngIf="this.mostrarEditar">
+                        <form [formGroup]="formulario" (ngSubmit)="editarUsuario()">
+                            <div class="form-group">
+                                <label for="">Nome</label>
+                                <input type="text" formControlName="nome" ngModel="{{this.pessoa.nome}}"
+                                    class="form-control" value="{{this.pessoa.nome}}" name="" id=""
+                                    aria-describedby="helpId" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input type="email" formControlName="email" ngModel="{{this.pessoa.email}}"
+                                    class="form-control" value="{{this.pessoa.email}}" name="" id=""
+                                    aria-describedby="emailHelpId" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Data de Nascimento</label>
+                                <input type="text" formControlName="dataNascimento"
+                                    ngModel="{{this.pessoa.dataNascimento}}" [value]="this.pessoa.dataNascimento"
+                                    class="form-control text-uppercase" name="" id="" aria-describedby="helpId"
+                                    placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Telefone</label>
+                                <input type="text" formControlName="telefone" ngModel="{{this.pessoa.telefone}}"
+                                    class="form-control" [value]="this.pessoa.telefone" name="" id=""
+                                    aria-describedby="helpId" placeholder="">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row justify-content-center align-items-end">
+
+                        <button type="submit" class="btn btn-success mt-3 mr-3" *ngIf="this.mostrarEditar == true"
+                            (click)="this.editarUsuario()">Salvar Alteração</button>
+                        <button class="btn btn-danger mt-3" *ngIf="this.mostrarEditar == true"
+                            (click)="this.mostrarEditar = !this.mostrarEditar">Fechar</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-4 ">
+                <div class="card text-left imagemPessoa">
+                    <img class="card-img-top" src="../../assets/img/Screenshot_11.png" alt="">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Bem vindo ao seu Perfil</h4>
+                        <p class="card-text text-uppercase badge badge-success">{{this.pessoa.nome}}</p><br>
+                        <div class="row ">
+                            <div class="col-lg-6">
+                                <a routerLink="/dashboard">
+                                    <span class=" btn btn-sm btn-warning btn-block">Página
+                                        Principal</span>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <a href="">
+                                    <span class="btn btn-sm btn-danger btn-block">Deslogar</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-3 p-0">
+            <div class="col-lg-12 botoes">
+                <button class="btn btn-warning" (click)="mostrarMeusCursos = !this.mostrarMeusCursos">Meus
+                    Cursos</button>
+                <button class="btn btn-warning ml-2">Cursos Criados</button>
+            </div>
+        </div>
+
+        <div class="row mt-3" *ngIf="this.mostrarMeusCursos">
+            <div class="conteudoDosMeusCursos justify-content-around">
+                <div class="row ">
+                    <div *ngFor="let meusCursos of cursos">
+                        <app-cursoPerfil [titulo]="meusCursos.nome" style="width: 150px;"></app-cursoPerfil>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+
+        </footer>
+    </div>
 </div>

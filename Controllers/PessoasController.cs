@@ -39,6 +39,26 @@ namespace AngularMVC.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
+        [Route("api/[controller]/editarUsuario")]
+         [HttpPost]
+        public async Task<ActionResult<dynamic>> editarUsuario([FromBody] Pessoa pessoa)
+        {
+            int pessoaUpdate;
+            Pessoa novaPessoa = new Pessoa();
+            try
+            {
+                using(var data = new PessoaData())
+                 pessoaUpdate = data.Update(pessoa);
+                 using(var data = new PessoaData())
+                 novaPessoa = data.Read(pessoaUpdate);
+                 
+                return Ok(novaPessoa);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
        
         
     }

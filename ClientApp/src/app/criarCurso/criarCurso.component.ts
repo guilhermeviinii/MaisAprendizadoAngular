@@ -15,6 +15,7 @@ export class CriarCursoComponent implements OnInit {
   baseUrl = `${environment.UrlPrincipal}/api/curso`;
 
   public formulario: FormGroup;
+  public formData: any;
 
   constructor(public fb: FormBuilder, private http: HttpClient, private lojaService: LojaService) { }
 
@@ -22,14 +23,21 @@ export class CriarCursoComponent implements OnInit {
     this.formulario = this.fb.group({
       nome: [null, Validators.required],
       preco: [null, Validators.required],
-      cargaHoraria: [null, Validators.required],
-      customFile: [null, Validators.required]
+      cargaHoraria: [null, Validators.required]
 
     })
   }
+  inputFileChange(evento){
+    if(evento.target.files && evento.target.files[0]){
+      const foto = evento.target.files[0];
+       this.formData = new FormData();
+      this.formData.append('foto', foto)
+    }
+  }
 
   criarCurso() {
-    return this.lojaService.criarCurso(this.formulario.value).subscribe((retorno) => {
+    
+    return this.lojaService.criarCurso(this.formulario.value, this.formData).subscribe((retorno) => {
       console.log(retorno);
     });
 

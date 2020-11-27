@@ -52,7 +52,7 @@
               <div class="row d-flex justify-content-center mt-3">
                   <div class="form-group text-center">
                       <label for="nomeCurso">Nome do Curso</label>
-                      <input type="email" formControlName="nome" class="form-control" id="nomeCurso" aria-describedby="nomeCurso"
+                      <input type="email" formControlName="nome"  class="form-control" id="nomeCurso" aria-describedby="nomeCurso"
                           placeholder="Digite o nome do curso">
                   </div>
               </div>
@@ -71,7 +71,7 @@
                       <label for="customFile"  class="text-center">Thumbnail do Curso</label>
                       <div class="custom-file">
                           <label class="custom-file-label" for="customFile">Selecione uma imagem</label>
-                          <input type="file" formControlName="customFile" class="custom-file-input" id="customFile">
+                          <input type="file" (change)="inputFileChange($event)" formControlName="imgCurso" class="custom-file-input" id="customFile">
                       </div>
                   </div>
               </div>

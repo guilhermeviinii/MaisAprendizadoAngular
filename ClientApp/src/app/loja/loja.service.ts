@@ -5,11 +5,14 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CursoComponent } from '../curso/curso.component';
 import { Curso } from '../models/Curso';
+import { NavDashboardComponent } from '../nav-dashboard/nav-dashboard.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LojaService {
+  public itemCarrinho = new Array();
+  public total: number;
   baseUrl = `${environment.UrlPrincipal}/api/curso`;
   constructor(private http: HttpClient) { }
 
@@ -17,6 +20,8 @@ export class LojaService {
     return this.http.get<Curso[]>(`${this.baseUrl}/Read`).pipe(
       tap(console.log))
   }
+
+ 
 
   
   buscarCursoPorNome(nomeCurso: string): Observable<Curso[]>{
@@ -26,9 +31,13 @@ export class LojaService {
       tap(console.log))
   }
 
-  criarCurso(formulario: any): Observable<any> {
-    return this.http.post(this.baseUrl + '/criarCurso', formulario);
+  criarCurso(formulario: any, foto): Observable<any> {
+    return this.http.post(this.baseUrl + '/criarCurso', formulario,foto);
 
+  }
+
+  buscarTodosCursoPorId(pessoaId: number): Observable<Curso[]> {
+    return this.http.get<Curso[]>(this.baseUrl + '/buscarTodosCursoPorId?id=' + pessoaId);
   }
   
   

@@ -78,24 +78,29 @@ namespace MaisAprendizado.Data
         //Sobrecarga
         public Pessoa Read(int id)
         {
+            DateTime data;
             Pessoa pessoa = null;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"SELECT * FROM Pessoas WHERE Id = @id";
+            cmd.CommandText = @"SELECT * FROM Pessoas WHERE pessoaId = @Id";
             cmd.Parameters.AddWithValue("@Id", id);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
                 pessoa = new Pessoa();
-                pessoa.PessoaId = (int)reader["IdPessoa"];
+                pessoa.PessoaId = (int)reader["PessoaId"];
                 pessoa.Nome = (string)reader["Nome"];
                 pessoa.Email = (string)reader["Email"];
+                data = (DateTime)reader["dataNascimento"];
+                pessoa.DataNascimento = (data).ToString("dd/MM/yyyy");
                 pessoa.Senha = (string)reader["Senha"];
+                pessoa.Telefone = (string)reader["Telefone"];
             }
             return pessoa;
         }
         public Pessoa Get(string email, string senha)
         {
+            DateTime data;
             Pessoa pessoa = null;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
@@ -110,24 +115,29 @@ namespace MaisAprendizado.Data
                 pessoa.Nome = (string)reader["Nome"];
                 pessoa.Email = (string)reader["Email"];
                 pessoa.Senha = (string)reader["Senha"];
-                pessoa.DataNascimento = (DateTime)reader["dataNascimento"];
+                data = (DateTime)reader["dataNascimento"];
+                pessoa.DataNascimento = (data).ToString("dd/MM/yyyy");
+                
                 pessoa.Telefone = (string)reader["Telefone"];
             }
             return pessoa;
         }
         //Update - UPDATE
-        public void Update(Pessoa pessoa)
+        public dynamic Update(Pessoa pessoa)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
             cmd.CommandText = @"UPDATE Pessoas SET Nome = @Nome, Email = @Email, DataNascimento = @DataNascimento,
-                                Senha = @senha WHERE IdPessao = @PessoaId";
+                                Telefone = @Telefone WHERE pessoaId = @PessoaId";
             cmd.Parameters.AddWithValue("@Nome", pessoa.Nome);
             cmd.Parameters.AddWithValue("@Email", pessoa.Email);
             cmd.Parameters.AddWithValue("@DataNascimento", pessoa.DataNascimento);
-            cmd.Parameters.AddWithValue("@Senha", pessoa.Senha);
+            cmd.Parameters.AddWithValue("@Telefone", pessoa.Telefone);
+            cmd.Parameters.AddWithValue("@PessoaId", pessoa.PessoaId);
             cmd.ExecuteNonQuery();
+            return pessoa.PessoaId;
         }
+        
         //Delete - DELETE
         public void Delete(int id)
         {

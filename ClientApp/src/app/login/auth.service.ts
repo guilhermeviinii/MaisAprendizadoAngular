@@ -20,7 +20,7 @@ export class AuthService {
 
   fazerLogion(usuario: Usuario) {
     return this.http.post(this.baseUrl + '/Get', usuario).subscribe((resp: any) => {
-      if(resp.mensagem == "usuarioErrado"){
+      if (resp.mensagem == "usuarioErrado") {
         return this.usuarioAutenticado = false;
       }
       this.pessoa = resp.usuario;
@@ -30,10 +30,12 @@ export class AuthService {
     }, () => { this.usuarioAutenticado = false })
   }
 
-  usuarioEstaAutenticado(){
+  usuarioEstaAutenticado() {
     return this.usuarioAutenticado
   }
-  dadosUsuarioLogado(){
+  dadosUsuarioLogado() {
     return this.pessoa
   }
+
+  
 }

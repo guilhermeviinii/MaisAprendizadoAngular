@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -16,12 +17,25 @@ namespace MaisAprendizado.Data
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"EXEC AdicionarCurso @IdProfessor, @Nome, @Preco, @CargaHoraria";
+            cmd.CommandText = @"Insert into Cursos Values (@IdProfessor, @Nome, @Preco, @CargaHoraria)";
             cmd.Parameters.AddWithValue("@IdProfessor", curso.PessoaId);
             cmd.Parameters.AddWithValue("@Nome", curso.Nome);
             cmd.Parameters.AddWithValue("@Preco", curso.Preco);
             cmd.Parameters.AddWithValue("@CargaHoraria", curso.CargaHoraria);
             cmd.ExecuteNonQuery();
+        }
+        public static byte[] GetPhoto(string filePath)
+        {
+            FileStream stream = new FileStream(
+                filePath, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(stream);
+
+            byte[] photo = reader.ReadBytes((int)stream.Length);
+
+            reader.Close();
+            stream.Close();
+
+            return photo;
         }
         //Read - SELECT
         public List<Curso> Read()
@@ -72,7 +86,29 @@ namespace MaisAprendizado.Data
             cmd.Connection = connectionDB;
             cmd.CommandText = @"select * from Cursos where nome like upper(@nomeCurso)";
             cmd.Parameters.AddWithValue("@nomeCurso", nome);
-             SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Curso curso = new Curso();
+                curso.IdCurso = (int)reader["CursoId"];
+                curso.Nome = (string)reader["Nome"];
+                curso.Preco = (decimal)reader["Preco"];
+                lista.Add(curso);
+            }
+            return lista;
+        }
+        public List<Curso> buscarTodosCursoPorId(int id)
+        {
+            Pessoa pessoa = new Pessoa();
+            List<Curso> lista = new List<Curso>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connectionDB;
+            cmd.CommandText = @"Select c.* from Cursos c 
+                                        left join compra_curso cc on c.CursoId = cc.CursoId
+                                        left join compras ca on ca.CompraId = cc.CompraId
+                                        where ca.AlunoId = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 Curso curso = new Curso();

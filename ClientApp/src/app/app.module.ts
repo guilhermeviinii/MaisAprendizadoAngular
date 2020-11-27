@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownConfig, BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupName, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -20,9 +22,9 @@ import { CursoComponent } from './curso/curso.component';
 import { CriarCursoComponent } from './criarCurso/criarCurso.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './guards/auth.guard';
-import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfilComponent } from './perfil/perfil.component';
+import { CursoPerfilComponent } from './cursoPerfil/cursoPerfil.component';
+import { ItemCarrinhoComponent } from './itemCarrinho/itemCarrinho.component';
 
 @NgModule({
   declarations: [
@@ -39,15 +41,16 @@ import { PerfilComponent } from './perfil/perfil.component';
     LojaComponent,
     CursoComponent,
     CriarCursoComponent,
-    PerfilComponent
+    PerfilComponent,
+    CursoPerfilComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    BsDropdownModule.forRoot(),
-    BrowserAnimationsModule,
+    //  BsDropdownModule.forRoot(),
+    //   BrowserAnimationsModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -76,7 +79,7 @@ import { PerfilComponent } from './perfil/perfil.component';
       },
       {
         path: 'loja',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         component: LojaComponent
       },
       {
@@ -90,8 +93,11 @@ import { PerfilComponent } from './perfil/perfil.component';
         component: PerfilComponent
       }
     ]),
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
   ],
-  providers: [AuthService, AuthGuard, BsDropdownConfig],
+  providers: [AuthService, AuthGuard, BsDropdownConfig
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

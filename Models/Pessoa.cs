@@ -13,7 +13,7 @@ namespace MaisAprendizado.Models
         {
         }
 
-        public Pessoa(int PessoaId, string Nome, string Email, DateTime DataNascimento, string Senha, string Telefone)
+        public Pessoa(int PessoaId, string Nome, string Email, string DataNascimento, string Senha, string Telefone)
         {
             this.PessoaId = PessoaId;
             this.Nome = Nome;
@@ -31,7 +31,7 @@ namespace MaisAprendizado.Models
         public string Email { get; set; }
 
         [Display(Name = "Data de nascimento")]
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
 
         [Display(Name = "Senha")]
         public string Senha { get; set; }
