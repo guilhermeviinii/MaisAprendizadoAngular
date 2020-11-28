@@ -33,7 +33,7 @@ namespace MaisAprendizado.Data
             while(reader.Read())
             {
                 CompraCurso compracurso = new CompraCurso();
-                compracurso.IdCompra = (int)reader["CompraId"];
+                compracurso.CompraId = (int)reader["CompraId"];
                 compracurso.IdCurso = (int)reader["CursoId"];
                 compracurso.Quantidade = (int)reader["Quantidade"];
                 compracurso.Status = (int)reader["Status"];

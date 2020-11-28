@@ -8,7 +8,7 @@ namespace MaisAprendizado.Models
 {
     public class AulaGravada
     {
-        public int? IdAula { get; set; }
+        public int? AulaId { get; set; }
         //public int CursoId { get; set; }
         
         [Display(Name = "Titulo")]

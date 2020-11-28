@@ -36,6 +36,7 @@ export class LojaService {
 
   }
 
+
   buscarTodosCursoPorId(pessoaId: number): Observable<Curso[]> {
     return this.http.get<Curso[]>(this.baseUrl + '/buscarTodosCursoPorId?id=' + pessoaId);
   }

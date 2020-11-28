@@ -41,6 +41,10 @@ export class LojaComponent implements OnInit {
     }
 
   }
+  comprarCurso(curso) {
+    this.lojaService.itemCarrinho.push(curso)
+
+  }
 
   buscarCurso() {
     this.lojaService.buscarCursoPorNome(this.nomeCurso).subscribe(

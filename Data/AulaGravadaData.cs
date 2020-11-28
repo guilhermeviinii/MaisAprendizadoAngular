@@ -15,7 +15,7 @@ namespace MaisAprendizado.Data
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
             cmd.CommandText = @"INSERT INTO Aula_gravada VALUES(@AulaId, @CursoId, @Titulo, @Descricao)";//Inserir tambem no curso espcifico
-            cmd.Parameters.AddWithValue("@AulaId", aula.IdAula);
+            cmd.Parameters.AddWithValue("@AulaId", aula.AulaId);
             cmd.Parameters.AddWithValue("@Titulo", aula.Titulo);
             cmd.Parameters.AddWithValue("@Descricao", aula.Descricao);
             cmd.ExecuteNonQuery();
@@ -32,7 +32,7 @@ namespace MaisAprendizado.Data
             if (reader.Read())
             {
                 aulagravada = new AulaGravada();
-                aulagravada.IdAula = (int)reader["AulaId"];
+                aulagravada.AulaId = (int)reader["AulaId"];
                 aulagravada.Titulo = (string)reader["Titulo"];
                 aulagravada.Descricao = (string)reader["Descricao"];
             }

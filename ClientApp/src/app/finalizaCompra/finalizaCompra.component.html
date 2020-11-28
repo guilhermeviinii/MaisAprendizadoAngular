@@ -1,11 +1,55 @@
-<div class="container ">
-  <div class="row align-items-center justify-content-center" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);height: 500px;">
-    <div class="col-lg-8 col p-5" style="border: 1px solid red" >
-          <h3>Você está quase lá...</h3> 
+<div class="container p-4">
+  <div class="row  justify-content-center p-4" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); ">
+    <div class="col-lg-12 col p-5">
+      <h3>Você está quase lá...</h3>
 
-          <h4>Detalhes do Curso/Aula que voce selecionou abaixo:</h4>
+      <h4>Detalhe do(s) Curso/Aulas abaixo:</h4>
+      <div class="row justify-content-center mt-4" *ngFor="let itemCar of this.itemParaFinalizar">
+        <div class="col-lg-6 " style="box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);">
+          <fieldset class="m-3 p-3 informacoes">
+            <div class="col-6 mt-2">
+              <span class="material-icons">face </span>
+              <span class="badge ">Nome do Curso: </span>
+              <span class="badge d-block">{{itemCar.nome}}</span>
+            </div>
+            <div class="col-6 mt-2">
+              <span class="material-icons ">attach_money </span>
+              <span class="badge ">Valor do Curso: </span>
+              <span class="badge  d-block">R$ {{itemCar.preco}}</span>
+            </div>
+            <div class="col-6 mt-2">
+              <span class="material-icons d-inline ">av_timer</span>
+              <span class="badge d-inline">Carga horária/Tempo de aula prevista: </span>
+              <span class="badge d-block">{{itemCar.cargaHoraria}} Horas</span>
+            </div>
+            <div class="col-6 mt-2">
+              <span class="material-icons ">supervised_user_circle </span>
+              <span class="badge ">Nome do Professor: </span>
+              <span class="badge d-block">{{itemCar.professorNome}}</span>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-lg-6 " style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+          <img src="../../assets/img/download (1).png">
+          <h3 class="d-inline">{{itemCar.nome}}</h3>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="row mt-3  float-right text-center ">
+      <button class="btn btn-lg btn-success  " (click)="comprarCurso(this.itemParaFinalizar)"><span class="material-icons"> insert_emoticon</span> Comprar!</button>
+      <button class="btn btn-lg btn-danger ml-3" (click)="apagarCarrinho()" routerLink="/loja">Cancelar <span
+          class="material-icons">sentiment_very_dissatisfied</span></button>
 
     </div>
   </div>
+
+
+
+
+
 
 </div>

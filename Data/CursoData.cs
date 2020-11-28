@@ -43,7 +43,7 @@ namespace MaisAprendizado.Data
             List<Curso> lista = null;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"SELECT * FROM Cursos ORDER BY Nome";
+            cmd.CommandText = @"SELECT c.*,p.nome as ProfessorNome FROM Cursos c left join pessoas p on p.pessoaId = c.professorId ORDER BY Nome";
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -51,7 +51,9 @@ namespace MaisAprendizado.Data
                 curso.IdCurso = (int)reader["CursoId"];
                 curso.Nome = (string)reader["Nome"];
                 curso.Preco = (decimal)reader["Preco"];
-                curso.IdPessoa = (int)reader["ProfessorId"];
+                curso.Preco = (decimal)reader["cargarHoraria"];
+                curso.PessoaId = (int)reader["ProfessorId"];
+                curso.ProfessorNome = (string)reader["ProfessorNome"];
                 lista.Add(curso);
             }
             return lista;
@@ -63,7 +65,7 @@ namespace MaisAprendizado.Data
             List<Curso> lista = new List<Curso>();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"SELECT c.*, p.Nome AS Professor FROM Cursos c LEFT JOIN Pessoas p
+            cmd.CommandText = @"SELECT c.*, p.Nome AS ProfessorNome FROM Cursos c LEFT JOIN Pessoas p
                                     ON c.ProfessorId = p.PessoaId";
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -72,7 +74,9 @@ namespace MaisAprendizado.Data
                 curso.IdCurso = (int)reader["CursoId"];
                 curso.Nome = (string)reader["Nome"];
                 curso.Preco = (decimal)reader["Preco"];
-                pessoa.Nome = (string)reader["Professor"];
+                curso.CargaHoraria = (decimal)reader["cargaHoraria"];
+                curso.ProfessorNome = (string)reader["ProfessorNome"];
+                curso.PessoaId = (int)reader["ProfessorId"];
                 lista.Add(curso);
             }
             return lista;

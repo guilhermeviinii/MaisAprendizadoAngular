@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Route } from '@angular/compiler/src/core';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -28,6 +28,11 @@ export class AuthService {
       this.usuarioAutenticado = true;
       this.route.navigate(['dashboard'])
     }, () => { this.usuarioAutenticado = false })
+  }
+  isProfessor(pessoaId){
+    let params = new HttpParams();
+    {params = params.set('nome', pessoaId)};
+    return this.http.get(this.baseUrl + '/isProfessor', )
   }
 
   usuarioEstaAutenticado() {

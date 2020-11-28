@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LojaService } from '../loja/loja.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class NavDashboardComponent implements OnInit {
   public itemCarrinho = new Array();
 
   constructor(
-    private lojaService: LojaService
+    private lojaService: LojaService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,8 @@ export class NavDashboardComponent implements OnInit {
 
     }
   }
-
+  finalizarCompra(itemCar: any){
+      this.router.navigate['finalizaCompra']
+  }
 
 }

@@ -10,10 +10,11 @@ namespace MaisAprendizado.Models
     {
         public int? IdCurso { get; set; }
 
-        public int IdPessoa { get; set; }
+        public int PessoaId { get; set; }
 
     [Microsoft.AspNetCore.Mvc.FromForm(Name  = "Nome")]
         public string Nome { get; set; }
+        public string ProfessorNome {get; set;}
         
         
 
