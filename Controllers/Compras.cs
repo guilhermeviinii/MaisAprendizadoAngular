@@ -12,13 +12,13 @@ namespace AngularMVC.Controllers
     {
         [Route("api/[controller]/comprar")]
         [HttpPost]
-        public async Task<ActionResult<dynamic>> Comprar([FromBody] Compra compra)
+        public async Task<ActionResult<dynamic>> Comprar(Compra compra, int alunoid)
         {
                 int id;
             try
             {
                 var data = new CompraData();
-                    data.Create(compra);
+                    data.Create(compra, alunoid);
                     return Ok();
 
 

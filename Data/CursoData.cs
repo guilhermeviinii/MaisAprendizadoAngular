@@ -17,7 +17,7 @@ namespace MaisAprendizado.Data
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"Insert into Cursos Values (@IdProfessor, @Nome, @Preco, @CargaHoraria)";
+            cmd.CommandText = @"Exec AdicionarCurso @IdProfessor, @Nome, @Preco, @CargaHoraria";
             cmd.Parameters.AddWithValue("@IdProfessor", curso.PessoaId);
             cmd.Parameters.AddWithValue("@Nome", curso.Nome);
             cmd.Parameters.AddWithValue("@Preco", curso.Preco);
@@ -107,7 +107,7 @@ namespace MaisAprendizado.Data
             List<Curso> lista = new List<Curso>();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
-            cmd.CommandText = @"Select c.* from Cursos c 
+            cmd.CommandText = @"Select c.*, ca.alunoId as id from Cursos c 
                                         left join compra_curso cc on c.CursoId = cc.CursoId
                                         left join compras ca on ca.CompraId = cc.CompraId
                                         where ca.AlunoId = @id";
@@ -116,6 +116,7 @@ namespace MaisAprendizado.Data
             while (reader.Read())
             {
                 Curso curso = new Curso();
+                curso.PessoaId = (int)reader["id"];
                 curso.IdCurso = (int)reader["CursoId"];
                 curso.Nome = (string)reader["Nome"];
                 curso.Preco = (decimal)reader["Preco"];

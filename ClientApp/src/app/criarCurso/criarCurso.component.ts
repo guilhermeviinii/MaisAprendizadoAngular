@@ -37,7 +37,7 @@ export class CriarCursoComponent implements OnInit {
 
   criarCurso() {
     
-    return this.lojaService.criarCurso(this.formulario.value, this.formData).subscribe((retorno) => {
+    return this.lojaService.criarCurso(this.formulario.value).subscribe((retorno) => {
       console.log(retorno);
     });
 

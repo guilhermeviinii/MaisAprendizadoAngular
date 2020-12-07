@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../login/auth.service';
 import { LojaService } from '../loja/loja.service';
 import { ComprasService } from './compras.service';
 
@@ -13,7 +14,7 @@ import { ComprasService } from './compras.service';
 export class FinalizaCompraComponent implements OnInit {
   public itemParaFinalizar = new Array();
 
-  constructor(private lojaService: LojaService, private comprasService: ComprasService, private http: HttpClient) { }
+  constructor(private lojaService: LojaService, private authService: AuthService, private comprasService: ComprasService, private http: HttpClient) { }
 
   ngOnInit() {
     console.log(this.itemParaFinalizar = this.lojaService.itemCarrinho)
@@ -24,16 +25,10 @@ export class FinalizaCompraComponent implements OnInit {
   }
 
   comprarCurso(cursos) {
-    var params = new HttpParams();
     for (let key of cursos) {
-      key
-        params = params
-          .set('IdCurso', key["idCurso"])
-          .set('PessoaId', key["pessoaId"])
-          .set('Nome', key["nome"])
-          .set('Valor', key["preco"])
-      ;
-      this.comprasService.comprarCurso({params: params}).subscribe((retorno) => {
+      key.alunoid = this.authService.pessoa.pessoaId
+      console.log(key)
+      this.comprasService.comprarCurso(key).subscribe((retorno) => {
         console.log(retorno);
       });
       // params = params.set('IdCurso', cursos[i]["idCurso"])
@@ -43,7 +38,7 @@ export class FinalizaCompraComponent implements OnInit {
       //   ;
       //  console.log(params['updates'])
 
-      console.log(params)
+      console.log(key)
 
 
     }

@@ -20,14 +20,13 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.alerta = false;
+    this.authService.alerta;
   }
 
 
   logar() {
     // console.log(this.usuario)
     var resp = this.authService.fazerLogion(this.usuario)
-    console.log(resp)
   }
 
 }

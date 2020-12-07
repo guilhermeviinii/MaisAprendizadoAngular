@@ -77,8 +77,6 @@ namespace AngularMVC.Controllers
         
         public IActionResult criarCurso([FromBody]Curso curso1)
         {
-
-            curso1.PessoaId = 2;
             try
             {
 

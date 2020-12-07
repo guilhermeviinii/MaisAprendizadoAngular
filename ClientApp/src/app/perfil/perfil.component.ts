@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit {
   public titulo: string;
   public data: any;
   public separar: any;
+  public isProfessor: any;
 
   public formulario: FormGroup;
   public mostrarEditar: boolean;
@@ -26,7 +27,7 @@ export class PerfilComponent implements OnInit {
      private authService: AuthService, private perfilService: PerfilService, private lojaService: LojaService) { }
 
   ngOnInit() {
-
+   
     this.mostrarEditar = false;
     this.mostrarMeusCursos = false;
     console.log(this.pessoa = this.authService.dadosUsuarioLogado());
@@ -49,8 +50,9 @@ export class PerfilComponent implements OnInit {
       telefone: [null, Validators.required]
 
     })
-
+    this.verificacaoProfessor(this.pessoa)
   }
+  
   @Input() email: string = this.pessoa.email;
   @Input() telefone: number = this.pessoa.telefone;
   @Input() dataNascimento: string = this.pessoa.dataNascimento;
@@ -58,8 +60,12 @@ export class PerfilComponent implements OnInit {
   editarUsuario() {
     return  this.perfilService.editarUsuario(this.formulario.value).subscribe((retorno: any) => {
         this.mostrarEditar = false;
+        this.authService.pessoa = retorno;
       
       console.log(this.pessoa  = retorno);
     })
+  }
+  verificacaoProfessor(pessoa: any) {
+    this.authService.isProfessor(pessoa.pessoaId)
   }
 }

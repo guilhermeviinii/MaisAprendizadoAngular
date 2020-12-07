@@ -43,13 +43,14 @@ namespace AngularMVC.Controllers
         }
         [Route("api/[controller]/isProfessor")]
         [HttpGet]
-        public async Task<ActionResult<dynamic>> isProfessor([FromBody] Pessoa pessoa)
+        public async Task<ActionResult<dynamic>> isProfessor(int pessoaId)
         {
-            Pessoa professorId = new Pessoa();
+            Pessoa pessoa = new Pessoa();
             try
             {
                 using (var data = new PessoaData())
-                    return data.isProfessor(pessoa);
+               pessoa = data.isProfessor(pessoaId);
+                    return new{ pessoa = pessoa.PessoaId } ;
                 
             }
             catch (Exception ex)

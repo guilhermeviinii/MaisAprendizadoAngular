@@ -31,8 +31,8 @@ export class LojaService {
       tap(console.log))
   }
 
-  criarCurso(formulario: any, foto): Observable<any> {
-    return this.http.post(this.baseUrl + '/criarCurso', formulario,foto);
+  criarCurso(formulario: any): Observable<any> {
+    return this.http.post(this.baseUrl + '/criarCurso', formulario);
 
   }
 

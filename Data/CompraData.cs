@@ -8,14 +8,14 @@ namespace MaisAprendizado.Data
 {
     public class CompraData : Data
     {
-        public void Create(Compra compra)
+        public void Create(Compra compra, int aluno)
         {
             dynamic id = null;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
             cmd.CommandText = @"Exec adicionarCompra @PessoaId, @Valor";
-            cmd.Parameters.AddWithValue("@PessoaId", compra.PessoaId);
-            cmd.Parameters.AddWithValue("@Valor", compra.valor);
+            cmd.Parameters.AddWithValue("@PessoaId", compra.AlunoId);
+            cmd.Parameters.AddWithValue("@Valor", compra.Preco);
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())

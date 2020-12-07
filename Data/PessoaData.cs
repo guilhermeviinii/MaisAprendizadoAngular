@@ -122,14 +122,13 @@ namespace MaisAprendizado.Data
             }
             return pessoa;
         }
-        public Pessoa isProfessor(Pessoa usuario)
+        public Pessoa isProfessor(int id)
         {
-            DateTime data;
             Pessoa pessoa = null;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connectionDB;
             cmd.CommandText = @"SELECT * FROM Professores WHERE professorId = @ProfessorId";
-            cmd.Parameters.AddWithValue("@ProfessorId", usuario.PessoaId);
+            cmd.Parameters.AddWithValue("@ProfessorId",id);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {

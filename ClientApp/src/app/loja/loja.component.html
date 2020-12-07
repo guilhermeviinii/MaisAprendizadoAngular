@@ -5,7 +5,7 @@
       <!-- Corpo -->
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a routerLink="/dasbhoard" class="nav-link active">
+          <a routerLink="/dashboard" class="nav-link active">
             <img class="img-fluid mr-3" src="../../assets/img/icons8-home-64.png" width="25"> Página Inicial
           </a>
         </li>
@@ -17,29 +17,16 @@
           </a>
         </li>
         <li>
-          <a routerLink="/meusCursos" class=" nav-link">
-            <img class="img-fluid mr-3" src="../../assets//img/icons8-add-to-favorites-100.png" width="25"> Meus
-            Cursos
-          </a>
-
-        </li>
-        <li>
           <a routerLink="/criarCurso" class=" nav-link">
             <img class="img-fluid mr-3" src="../../assets/img/icons8-plus-64.png" width="25">
             Criar Cursos
-          </a>
-        </li>
-        <li>
-          <a routerLink="/categoria" class=" nav-link ">
-            <img class="img-fluid mr-4" src="../../assets/img/icons8-category-50.png" width="25">
-            Categorias
           </a>
         </li>
       </ul>
     </div>
   </section>
 
-  <div id="conteudoCurso" class="p-5">
+  <div id="conteudoCurso" class="p-5"  >
     <div class="row justify-content-center">
       <div class="col-lg-11 text-start">
         <div class="form-group">
@@ -58,11 +45,11 @@
     <div class="row m-4">
       <h3>Cursos Disponíveis</h3>
     </div>
-    <div class="row justify-content-between" *ngIf="cursos">
+    <div class="row d-flex justify-content-start" *ngIf="cursos"  style="margin-left: 30px;">
       <div *ngFor="let curso of cursos">
         
-  <div class="card text-center p-2 m-2 shadow">
-    <img class="card-img-top" src="../../assets//img/download (3).png" width="15" alt="Imagem de capa do card">
+  <div class="card text-center p-1 m-1 shadow">
+    <img class="card-img-top" src="../../assets//img/download (3).png" width="15"  alt="Imagem de capa do card">
     <div class="card-body justify-content-center">
       <h4 class="card-title">{{curso.nome}}</h4>
       <p class="card-text">R$ {{curso.preco}}</p>

@@ -13,26 +13,33 @@ import { Usuario } from './usuario';
 export class AuthService {
   baseUrl = `${environment.UrlPrincipal}/api/pessoas`;
 
-  private usuarioAutenticado: boolean = false;
+  public usuarioAutenticado: boolean = false;
   public pessoa: Pessoa = new Pessoa();
+  public alerta: boolean = false;
+  public eProfessor: boolean = false;
 
   constructor(private route: Router, private http: HttpClient) { }
 
   fazerLogion(usuario: Usuario) {
     return this.http.post(this.baseUrl + '/Get', usuario).subscribe((resp: any) => {
       if (resp.mensagem == "usuarioErrado") {
+        this.alerta = true;
         return this.usuarioAutenticado = false;
       }
       this.pessoa = resp.usuario;
-      console.log(this.pessoa)
+      this.pessoa
       this.usuarioAutenticado = true;
       this.route.navigate(['dashboard'])
-    }, () => { this.usuarioAutenticado = false })
+    }, () => {  return this.usuarioAutenticado = false; })
   }
   isProfessor(pessoaId){
     let params = new HttpParams();
-    {params = params.set('nome', pessoaId)};
-    return this.http.get(this.baseUrl + '/isProfessor', )
+    params = params.set('pessoaId', pessoaId);
+    return this.http.get<Pessoa[]>(`${this.baseUrl}/isProfessor?${params}`).subscribe((resp: any) => {
+      console.log(resp)
+      this.eProfessor = true;
+  
+  }, () => { this.eProfessor = false });
   }
 
   usuarioEstaAutenticado() {

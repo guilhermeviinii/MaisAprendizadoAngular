@@ -11,8 +11,8 @@ export class ComprasService {
 constructor(private http: HttpClient) { }
 
 
-comprarCurso(params){
-  return this.http.post(this.baseUrl + '/comprar', params);
+comprarCurso(key){
+  return this.http.post(this.baseUrl + '/comprar', key);
 }
 
 }

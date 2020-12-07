@@ -10,6 +10,7 @@ namespace MaisAprendizado.Models
     {
         public int CompraId { get; set; }
         public int PessoaId { get; set; }
+        public int AlunoId { get; set;}
         public int Status { get; set; }
         public string DataCompra { get; set; }
 

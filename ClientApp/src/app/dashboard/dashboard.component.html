@@ -16,23 +16,10 @@
             </span> Loja
           </a>
         </li>
-        <li>
-          <a routerLink="/meusCursos" class=" nav-link">
-            <img class="img-fluid mr-3" src="../../assets//img/icons8-add-to-favorites-100.png" width="25"> Meus
-            Cursos
-          </a>
-
-        </li>
-        <li>
+        <li *ngIf="this.authService.eProfessor">
           <a routerLink="/criarCurso" class=" nav-link">
             <img class="img-fluid mr-3" src="../../assets/img/icons8-plus-64.png" width="25">
             Criar Cursos
-          </a>
-        </li>
-        <li>
-          <a routerLink="/categoria" class=" nav-link ">
-            <img class="img-fluid mr-4" src="../../assets/img/icons8-category-50.png" width="25">
-            Categorias
           </a>
         </li>
       </ul>
@@ -42,33 +29,23 @@
   <section id="conteudoCurso">
     <div class="container-fluid">
       <!-- Corpo -->
-      <div class="row d-flex justify-content-between p-3" >
-        <h3>Meus Cursos {{this.pessoa.nome}} {{this.pessoa.pessoaId}}</h3>
+
+      <div class="row d-flex justify-content-between p-3">
+        <h3>Meus Cursos <span class="badge badge-info">{{this.cursos.length}}</span></h3>
         <button class="btn btn-success">Ver +</button>
       </div>
-      <div class="row d-flex justify-content-around mt-3">
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
-          </div>
+      <div class="row text-center align-items-center" *ngIf="cursos.length <= 0">
+        <div class="col">
+          <h4>Você ainda não possui nenhum curso</h4>
         </div>
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets//img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
-          </div>
-        </div>
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
-          </div>
-        </div>
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
+      </div>
+      <div class="row d-flex justify-content-start mt-3">
+        <div *ngFor="let k of cursos" class="p-2 ml-2">
+          <div class="card p-3" style="width: 150px;">
+            <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
+            <div class="card-body">
+              <p class="card-text text-center" style="font-size: 10px;">{{k.nome}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -78,32 +55,16 @@
     <div class="container-fluid">
       <!-- Corpo -->
       <div class="row d-flex justify-content-between p-3">
-        <h3>Cursos Disponíveis</h3>
-        <button class="btn btn-success">Ver +</button>
+        <h3>Cursos Disponíveis <span class="badge badge-info">{{this.cursosDisponiveis.length}}</span></h3>
+        <button class="btn btn-success" routerLink="/loja">Ver +</button>
       </div>
-      <div class="row d-flex justify-content-around mt-3">
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
-          </div>
-        </div>
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
-          </div>
-        </div>
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
-          </div>
-        </div>
-        <div class="card p-3" style="width: 8rem;">
-          <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
-          <div class="card-body">
-            <p class="card-text text-center" style="font-size: 10px;">JavaScript para iniciantes</p>
+      <div class="row d-flex justify-content-start mt-3">
+        <div *ngFor="let k of cursosDisponiveis.slice(0,5)" class="p-2 ml-2">
+          <div class="card p-3" style="width: 150px;">
+            <img class="card-img-top" src="../../assets/img/download (3).png" width="50" alt="Imagem de capa do card">
+            <div class="card-body">
+              <p class="card-text text-center" style="font-size: 10px;">{{k.nome}}</p>
+            </div>
           </div>
         </div>
       </div>
