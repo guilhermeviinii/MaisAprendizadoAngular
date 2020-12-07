@@ -137,6 +137,29 @@ namespace MaisAprendizado.Data
             }
             return pessoa;
         }
+        public List<Compra> HistoricoCompra(int id)
+        {
+            DateTime data;
+            List<Compra> lista = null;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connectionDB;
+            cmd.CommandText = @"SELECT * FROM V_CompraPorAluno where pessoaid = @pessoaId";
+            cmd.Parameters.AddWithValue("@pessoaId",id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            lista = new List<Compra>();
+            while(reader.Read())
+            {
+                Compra compras = new Compra();
+                compras.PessoaId = (int)reader["pessoaId"];
+                compras.Nome = (string)reader["Nome"];
+                data = (DateTime)reader["DataCompra"];
+                compras.cursoNome = Convert.IsDBNull(reader["CursoNome"]) ? string.Empty : (string)reader["CursoNome"];
+                compras.DataCompra = (data).ToString("dd/MM/yyyy");
+                compras.valor = (decimal)reader["Valor"];
+                lista.Add(compras);
+            }
+            return lista;
+        }
         //Update - UPDATE
         public dynamic Update(Pessoa pessoa)
         {

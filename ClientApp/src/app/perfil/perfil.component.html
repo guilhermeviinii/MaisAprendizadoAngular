@@ -104,7 +104,7 @@
                 </div>
                 <div class="row mt-3 p-0 ">
                     <div class="col-lg-12 botoes">
-                        <button class="btn btn-warning" (click)="mostrarMeusCursos = !this.mostrarMeusCursos && mostrarMeusCursosCriado = !this.mostrarMeusCursosCriado">Meus
+                        <button *ngIf="this.authService.eProfessor == false" class="btn btn-warning" (click)="mostrarMeusCursos = !this.mostrarMeusCursos && mostrarMeusCursosCriado = !this.mostrarMeusCursosCriado">Meus
                             Cursos</button>
                         <button *ngIf="this.authService.eProfessor" (click)="mostrarMeusCursosCriado = !this.mostrarMeusCursosCriado && mostrarMeusCursos = !this.mostrarMeusCursos" class="btn btn-warning ml-2">Cursos Criados</button>
                     </div>
@@ -123,7 +123,7 @@
                     <div class=" justify-content-around">
                         <div class="row " *ngIf="this.mostrarMeusCursosCriado">
                             <div *ngFor="let meusCursos of cursosCriado">
-                                <app-cursoCriadoPerfil [titulo]="meusCursos.nome" style="width: 150px;"></app-cursoCriadoPerfil>
+                                <app-cursoCriadoPerfil [titulo]="meusCursos.nome" [idCurso]="meusCursos.idCurso" style="width: 150px;"></app-cursoCriadoPerfil>
                             </div>
                         </div>
                     </div>

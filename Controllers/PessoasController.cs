@@ -58,6 +58,22 @@ namespace AngularMVC.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
+        [Route("api/[controller]/historicoCompra")]
+        [HttpGet]
+        public async Task<ActionResult<dynamic>> HistoricoCompra(int pessoaId)
+        {
+            try
+            {
+                using (var data = new PessoaData())
+               
+                    return data.HistoricoCompra(pessoaId);
+                
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
         [Route("api/[controller]/editarUsuario")]
         [HttpPost]
         public async Task<ActionResult<dynamic>> editarUsuario([FromBody] Pessoa pessoa)

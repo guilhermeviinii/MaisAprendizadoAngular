@@ -24,10 +24,14 @@ import { AuthGuard } from './guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 import { CursoPerfilComponent } from './cursoPerfil/cursoPerfil.component';
 import { FinalizaCompraComponent } from './finalizaCompra/finalizaCompra.component';
-import { CursoCriadoPerfilComponent } from './cursoCriadoPerfil/cursoCriadoPerfil.component';
+import { CursoCriadoPerfilComponent, DialogsExampleComponent } from './cursoCriadoPerfil/cursoCriadoPerfil.component';
+import { MatButton, MatButtonModule, MatNativeDateModule } from '@angular/material';
+import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { HistoricoCompraComponent } from './historicoCompra/historicoCompra.component';
+import { DemoMaterialModule } from './cursoCriadoPerfil/material-module';
 
 @NgModule({
-  declarations: [		
+  declarations: [				
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -44,12 +48,20 @@ import { CursoCriadoPerfilComponent } from './cursoCriadoPerfil/cursoCriadoPerfi
     PerfilComponent,
     CursoPerfilComponent,
       FinalizaCompraComponent,
-      CursoCriadoPerfilComponent
+      CursoCriadoPerfilComponent,
+      DialogsExampleComponent,
+      HistoricoCompraComponent
    ],
+   entryComponents: [DialogsExampleComponent, CursoCriadoPerfilComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    DemoMaterialModule,
+    MatNativeDateModule,    
+    DemoMaterialModule,
     FormsModule,
     //  BsDropdownModule.forRoot(),
     //   BrowserAnimationsModule,
@@ -91,20 +103,30 @@ import { CursoCriadoPerfilComponent } from './cursoCriadoPerfil/cursoCriadoPerfi
       },
       {
         path: 'finalizaCompra',
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: FinalizaCompraComponent
       },
       {
         path: 'perfil',
         canActivate: [AuthGuard],
         component: PerfilComponent
+      },
+      {
+        path: 'historicoCompra',
+        canActivate: [AuthGuard],
+        component: HistoricoCompraComponent
+      },
+      {
+        path: 'perfil',
+        canActivate: [AuthGuard],
+        component: DialogsExampleComponent
       }
     ]),
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [AuthService, AuthGuard, BsDropdownConfig
+  providers: [AuthService, AuthGuard, BsDropdownConfig, MatButton, MatDialog
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, CursoCriadoPerfilComponent]
 })
 export class AppModule { }

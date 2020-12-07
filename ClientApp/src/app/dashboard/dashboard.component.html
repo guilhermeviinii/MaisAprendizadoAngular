@@ -22,6 +22,12 @@
             Criar Cursos
           </a>
         </li>
+        <li *ngIf="this.authService.eProfessor == false">
+          <a routerLink="/historicoCompra" class=" nav-link">
+            <img class="img-fluid mr-3" src="../../assets/img/icons8-plus-64.png" width="25">
+            Histórico de Compras
+          </a>
+        </li>
       </ul>
     </div>
   </section>

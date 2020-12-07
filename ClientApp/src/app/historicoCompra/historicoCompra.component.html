@@ -1,0 +1,60 @@
+<app-nav-dashboard></app-nav-dashboard>
+<div id="conteudo" class="grid">
+  <section id="barraVertical">
+    <div class="container-fluid">
+      <!-- Corpo -->
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a routerLink="/dasbhoard" class="nav-link active">
+            <img class="img-fluid mr-3" src="../../assets/img/icons8-home-64.png" width="25"> Página Inicial
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/loja" class="nav-link" routerLinkActive="active">
+            <span class="material-icons mr-3">
+              shopping_cart
+            </span> Loja
+          </a>
+        </li>
+        <li *ngIf="this.authService.eProfessor">
+          <a routerLink="/criarCurso" class=" nav-link">
+            <img class="img-fluid mr-3" src="../../assets/img/icons8-plus-64.png" width="25">
+            Criar Cursos
+          </a>
+        </li>
+        <li *ngIf="this.authService.eProfessor == false">
+          <a routerLink="/historicoCompra" class=" nav-link">
+            <img class="img-fluid mr-3" src="../../assets/img/icons8-plus-64.png" width="25">
+            Histórico de Compras
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="conteudoCurso">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome do Curso</th>
+          <th scope="col">Data da Compra</th>
+          <th scope="col">Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let info of this.HistCompra ">
+          <th scope="row">1</th>
+          <td>{{info.cursoNome}}</td>
+          <td>{{info.dataCompra}}</td>
+          <td>{{info.valor}}</td>
+        </tr>        
+      </tbody>
+    </table>
+    
+    
+  </section>
+  <section id="cursoDisponivel">
+   
+  </section>
+</div>

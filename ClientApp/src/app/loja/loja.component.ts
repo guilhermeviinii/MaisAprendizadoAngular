@@ -16,7 +16,7 @@ export class LojaComponent implements OnInit {
 
   cursos: Curso[];
   total: number;
-  
+
 
   public itemCarrinho = new Array();
 
@@ -28,16 +28,16 @@ export class LojaComponent implements OnInit {
     this.lojaService.buscarTodosCursos().subscribe(
       arrayCursos => this.cursos = arrayCursos
     )
-    
-    
+
+
   }
-  
+
 
   adicionarCarrinho(curso) {
     this.lojaService.total = 0;
     this.lojaService.itemCarrinho.push(curso)
     for (let i = 0; i < this.lojaService.itemCarrinho.length; i++) {
-     this.lojaService.total = this.lojaService.total + this.lojaService.itemCarrinho[i]['preco'];
+      this.lojaService.total = this.lojaService.total + this.lojaService.itemCarrinho[i]['preco'];
     }
 
   }
@@ -50,6 +50,12 @@ export class LojaComponent implements OnInit {
     this.lojaService.buscarCursoPorNome(this.nomeCurso).subscribe(
       arrayCursos => this.cursos = arrayCursos
     )
+  }
+  listarMaior() {
+    console.log(this.cursos.sort((a, b) => a.preco < b.preco ? -1 : a.preco > b.preco ? 1 : 0))
+  }
+  listarMenor() {
+    console.log(this.cursos.sort((a, b) => a.preco < b.preco ? 1 : a.preco > b.preco ? -1 : 0))
   }
 
 }

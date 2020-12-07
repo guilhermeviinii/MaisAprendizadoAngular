@@ -155,6 +155,7 @@ namespace MaisAprendizado.Data
             cmd.Parameters.AddWithValue("@Nome", curso.Nome);
             cmd.Parameters.AddWithValue("@Preco", curso.Preco);
             cmd.Parameters.AddWithValue("@CargaHoraria", curso.CargaHoraria);
+            cmd.Parameters.AddWithValue("@IdCurso", curso.IdCurso);
             cmd.ExecuteNonQuery();
         }
         //Delete - DELETE

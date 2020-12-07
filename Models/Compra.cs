@@ -14,6 +14,8 @@ namespace MaisAprendizado.Models
         public int Status { get; set; }
         public string DataCompra { get; set; }
 
+        public string cursoNome {get;set;}
+
         public  decimal valor {get; set; }
         
     }

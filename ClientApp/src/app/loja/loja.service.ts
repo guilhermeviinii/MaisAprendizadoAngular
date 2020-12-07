@@ -35,6 +35,10 @@ export class LojaService {
     return this.http.post(this.baseUrl + '/criarCurso', formulario);
 
   }
+  editarCurso(formulario: any): Observable<any> {
+    return this.http.post(this.baseUrl + '/editarCurso', formulario);
+
+  }
 
 
   buscarTodosCursoPorId(pessoaId: number): Observable<Curso[]> {

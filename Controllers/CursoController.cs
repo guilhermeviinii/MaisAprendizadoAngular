@@ -114,6 +114,26 @@ namespace AngularMVC.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
+        [Route("api/[controller]/editarCurso")]
+        [HttpPost]
+        
+        public IActionResult editarCurso([FromBody]Curso curso1)
+        {
+            try
+            {
+
+                using (var data = new CursoData())
+                    data.Update(curso1);
+                return Ok("");
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
         [Route("api/[controller]/Read")]
         [HttpGet]
         public async Task<IActionResult> Read()

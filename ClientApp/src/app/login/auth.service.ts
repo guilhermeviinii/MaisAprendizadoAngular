@@ -40,6 +40,11 @@ export class AuthService {
   
   }, () => { this.eProfessor = false });
   }
+  historicoCompra(pessoaId){
+    let params = new HttpParams();
+    params = params.set('pessoaId', pessoaId);
+    return this.http.get<Pessoa[]>(`${this.baseUrl}/historicoCompra?${params}`)
+  }
 
   usuarioEstaAutenticado() {
     return this.usuarioAutenticado
