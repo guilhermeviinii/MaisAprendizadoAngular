@@ -36,7 +36,6 @@ export class AuthService {
     let params = new HttpParams();
     params = params.set('pessoaId', pessoaId);
     return this.http.get<Pessoa[]>(`${this.baseUrl}/isProfessor?${params}`).subscribe((resp: any) => {
-      console.log(resp)
       this.eProfessor = true;
   
   }, () => { this.eProfessor = false });

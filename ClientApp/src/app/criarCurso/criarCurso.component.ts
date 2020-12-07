@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../login/auth.service';
 import { LojaService } from '../loja/loja.service';
 
 @Component({
@@ -17,10 +18,11 @@ export class CriarCursoComponent implements OnInit {
   public formulario: FormGroup;
   public formData: any;
 
-  constructor(public fb: FormBuilder, private http: HttpClient, private lojaService: LojaService) { }
+  constructor(public fb: FormBuilder, private http: HttpClient, private lojaService: LojaService, private authService: AuthService) { }
 
   ngOnInit() {
     this.formulario = this.fb.group({
+      pessoaId: [this.authService.pessoa.pessoaId],
       nome: [null, Validators.required],
       preco: [null, Validators.required],
       cargaHoraria: [null, Validators.required]

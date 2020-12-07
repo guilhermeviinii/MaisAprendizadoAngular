@@ -20,8 +20,10 @@ export class PerfilComponent implements OnInit {
   public formulario: FormGroup;
   public mostrarEditar: boolean;
   public mostrarMeusCursos: boolean;
+  public mostrarMeusCursosCriado: boolean;
   public pessoa: Pessoa = new Pessoa();
   public cursos: Curso;
+  public cursosCriado: Curso;
 
   constructor(private fb: FormBuilder,
      private authService: AuthService, private perfilService: PerfilService, private lojaService: LojaService) { }
@@ -30,18 +32,14 @@ export class PerfilComponent implements OnInit {
    
     this.mostrarEditar = false;
     this.mostrarMeusCursos = false;
-    console.log(this.pessoa = this.authService.dadosUsuarioLogado());
-    console.log(this.lojaService.buscarTodosCursoPorId(this.pessoa.pessoaId).subscribe((resp: any) => {
-      console.log(this.cursos = resp["cursos"]);
-      // this.curso = resp.usuario;
-      // console.log(this.pessoa)
-      // this.usuarioAutenticado = true;
-      // this.route.navigate(['dashboard'])
-    }, () => { }));
-    // this.pessoa.dataNascimento;
-    // this.separar = this.pessoa.dataNascimento.split('/');
-    // this.data = new Date(this.separar[2], this.separar[1]-1, this.separar[0]);
-    // console.log(this.data)
+    this.mostrarMeusCursosCriado = false;
+    this.pessoa = this.authService.dadosUsuarioLogado();
+    this.lojaService.buscarTodosCursoCriadoPorId(this.pessoa.pessoaId).subscribe((resp: any) => {
+      console.log(this.cursosCriado = resp["cursos"]);
+    }, () => { });
+    this.lojaService.buscarTodosCursoPorId(this.pessoa.pessoaId).subscribe((resp: any) => {
+      this.cursos = resp["cursos"];
+    }, () => { });
     this.formulario = this.fb.group({
       pessoaId: [this.pessoa.pessoaId, Validators.required],
       nome: [null, Validators.required],
@@ -62,7 +60,7 @@ export class PerfilComponent implements OnInit {
         this.mostrarEditar = false;
         this.authService.pessoa = retorno;
       
-      console.log(this.pessoa  = retorno);
+      this.pessoa  = retorno;
     })
   }
   verificacaoProfessor(pessoa: any) {

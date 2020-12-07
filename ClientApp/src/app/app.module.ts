@@ -24,9 +24,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 import { CursoPerfilComponent } from './cursoPerfil/cursoPerfil.component';
 import { FinalizaCompraComponent } from './finalizaCompra/finalizaCompra.component';
+import { CursoCriadoPerfilComponent } from './cursoCriadoPerfil/cursoCriadoPerfil.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -42,7 +43,8 @@ import { FinalizaCompraComponent } from './finalizaCompra/finalizaCompra.compone
     CriarCursoComponent,
     PerfilComponent,
     CursoPerfilComponent,
-      FinalizaCompraComponent
+      FinalizaCompraComponent,
+      CursoCriadoPerfilComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

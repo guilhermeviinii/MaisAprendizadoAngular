@@ -124,6 +124,27 @@ namespace MaisAprendizado.Data
             }
             return lista;
         }
+        public List<Curso> buscarTodosCursoCriadoPorId(int id)
+        {
+            Pessoa pessoa = new Pessoa();
+            List<Curso> lista = new List<Curso>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connectionDB;
+            cmd.CommandText = @"Select c.* from cursos c where c.ProfessorId = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Curso curso = new Curso();
+                curso.PessoaId = (int)reader["ProfessorId"];
+                curso.IdCurso = (int)reader["CursoId"];
+                curso.Nome = (string)reader["Nome"];
+                curso.Preco = (decimal)reader["Preco"];
+                curso.CargaHoraria = (decimal)reader["CargaHoraria"];
+                lista.Add(curso);
+            }
+            return lista;
+        }
         //Update - UPDATE
         public void Update(Curso curso)
         {

@@ -70,6 +70,28 @@ namespace AngularMVC.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
+        [Route("api/[controller]/buscarTodosCursoCriadoPorId")]
+        [HttpGet]
+        public async Task<ActionResult<dynamic>> buscarTodosCursoCriadoPorId(int id)
+        {
+            List<Curso> cursos = new List<Curso>();
+            try
+            {
+                using (var data = new CursoData())
+
+                    cursos = data.buscarTodosCursoCriadoPorId(id);
+                    return new { 
+                        cursos = cursos
+                    };
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
 
         
         [Route("api/[controller]/criarCurso")]
