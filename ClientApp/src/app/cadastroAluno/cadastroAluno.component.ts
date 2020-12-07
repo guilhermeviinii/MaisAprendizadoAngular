@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DialogsExampleComponent } from '../cursoCriadoPerfil/cursoCriadoPerfil.component';
 import { CadastroAlunoService } from './cadastroAluno.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { CadastroAlunoService } from './cadastroAluno.service';
 export class CadastroAlunoComponent implements OnInit {
   public aluno: FormGroup;
 
-  constructor(public fb: FormBuilder, private http: HttpClient, private cadastroAluno: CadastroAlunoService) { }
+  constructor(public fb: FormBuilder, public route: Router, private http: HttpClient, private cadastroAluno: CadastroAlunoService) { }
 
   ngOnInit() {
     this.aluno = this.fb.group({
@@ -26,7 +28,8 @@ export class CadastroAlunoComponent implements OnInit {
 
   registroAluno() {
     return this.cadastroAluno.registroAluno(this.aluno.value).subscribe((retorno) => {
-      console.log(retorno);
+      this.route.navigate(['login'])
+     
     });
   }
 }

@@ -56,13 +56,13 @@
       <h3>Cursos Disponíveis</h3>
     </div>
     
-    <div class="row d-flex justify-content-start" *ngIf="cursos"  style="margin-left: 30px;">
+    <div class="row d-flex justify-content-start" *ngIf="cursos"  style="margin-left: 30px; white-space: normal">
       <div *ngFor="let curso of cursos">
         
   <div class="card text-center p-1 m-1 shadow">
     <img class="card-img-top" src="../../assets//img/download (3).png" width="15"  alt="Imagem de capa do card">
     <div class="card-body justify-content-center">
-      <h4 class="card-title">{{curso.nome}}</h4>
+      <h4 class="card-title"  >{{curso.nome}}</h4>
       <p class="card-text">R$ {{curso.preco}}</p>
       <button (click)="adicionarCarrinho(curso)" class="btn  btn-warning">Adicionar ao Carrinho<span class="material-icons ml-2 justify-content-center">
           add_shopping_cart

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CadastroProfessorService } from './cadastroProfessor.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { CadastroProfessorService } from './cadastroProfessor.service';
 export class CadastroProfessorComponent implements OnInit {
   public professor: FormGroup;
 
-  constructor(public fb: FormBuilder, private http: HttpClient, private cadastroProfessor: CadastroProfessorService) { }
+  constructor(public fb: FormBuilder, public route: Router, private http: HttpClient, private cadastroProfessor: CadastroProfessorService) { }
 
   ngOnInit() {
     this.professor = this.fb.group({
@@ -25,7 +26,8 @@ export class CadastroProfessorComponent implements OnInit {
   }
   registroProfessor(){
     return this.cadastroProfessor.registroProfessor(this.professor.value).subscribe((retorno) => {
-      console.log(retorno);
+      this.route.navigate(['login'])
+     
     });
   }
 
